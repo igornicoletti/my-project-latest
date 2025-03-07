@@ -10,38 +10,29 @@ import { toast } from 'sonner'
 import { z } from 'zod'
 
 /**
- * AuthForm Component
+ * AuthForm component for rendering authentication forms like login and registration.
+ * It manages form submission, validation, and rendering of social login buttons.
  *
- * This component is a reusable authentication form that can be used for both login and signup.
- * It accepts customizable configurations for title, description, button text, and social login buttons
- * (Apple/Google). Form validation is handled via Zod and React Hook Form.
+ * @param config - Configuration for the authentication form, including title, description, button text, etc.
+ * @param fields - An array of form fields to be rendered dynamically (e.g., email, password).
  *
- * @param {Object} config - Configuration for the form.
- * @param {string} config.title - The title of the form.
- * @param {string} config.description - The description of the form.
- * @param {string} config.buttonText - Text displayed on the submit button.
- * @param {boolean} config.forgotPassword - Determines whether the "Forgot password?" link should be displayed.
- * @param {boolean} config.socialButtons - Determines whether the social login buttons (Apple/Google) should be displayed.
- * @param {string} config.question - A question displayed below the form (e.g., "Don't have an account?").
- * @param {string} config.linkText - Text for the action link at the bottom of the form.
- * @param {string} config.linkTo - The route for the action link at the bottom of the form.
- * @param {Array<Object>} fields - An array of fields for the form.
- * @param {string} fields.id - The field's ID (e.g., 'email', 'password').
- * @param {string} fields.label - The label for the field.
- * @param {string} fields.type - The input type (e.g., 'text', 'password').
- * @param {boolean} fields.required - Determines whether the field is required.
- *
- * @returns {JSX.Element} - The rendered authentication form.
+ * @returns A form with the relevant fields and buttons, including social login options if enabled.
  */
 export const AuthForm = ({ config, fields }: AuthFormProps) => {
   const [loading, setLoading] = useState<boolean>(false)
 
-  // Initializes the form with Zod validation and React Hook Form
+  // Initialize the form with react-hook-form and validation using Zod
   const form = useForm<z.infer<typeof authSchema>>({
     resolver: zodResolver(authSchema),
     defaultValues: { email: '', password: '' }
   })
 
+  /**
+   * Handles form submission.
+   * It sets loading to true, simulates a successful submission, and displays a toast message.
+   *
+   * @param data - The data submitted by the form, which includes email and password.
+   */
   const onSubmit = (data: z.infer<typeof authSchema>) => {
     setLoading(true)
 
