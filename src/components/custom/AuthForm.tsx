@@ -9,9 +9,34 @@ import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+/**
+ * AuthForm Component
+ *
+ * This component is a reusable authentication form that can be used for both login and signup.
+ * It accepts customizable configurations for title, description, button text, and social login buttons
+ * (Apple/Google). Form validation is handled via Zod and React Hook Form.
+ *
+ * @param {Object} config - Configuration for the form.
+ * @param {string} config.title - The title of the form.
+ * @param {string} config.description - The description of the form.
+ * @param {string} config.buttonText - Text displayed on the submit button.
+ * @param {boolean} config.forgotPassword - Determines whether the "Forgot password?" link should be displayed.
+ * @param {boolean} config.socialButtons - Determines whether the social login buttons (Apple/Google) should be displayed.
+ * @param {string} config.question - A question displayed below the form (e.g., "Don't have an account?").
+ * @param {string} config.linkText - Text for the action link at the bottom of the form.
+ * @param {string} config.linkTo - The route for the action link at the bottom of the form.
+ * @param {Array<Object>} fields - An array of fields for the form.
+ * @param {string} fields.id - The field's ID (e.g., 'email', 'password').
+ * @param {string} fields.label - The label for the field.
+ * @param {string} fields.type - The input type (e.g., 'text', 'password').
+ * @param {boolean} fields.required - Determines whether the field is required.
+ *
+ * @returns {JSX.Element} - The rendered authentication form.
+ */
 export const AuthForm = ({ config, fields }: AuthFormProps) => {
   const [loading, setLoading] = useState<boolean>(false)
 
+  // Initializes the form with Zod validation and React Hook Form
   const form = useForm<z.infer<typeof authSchema>>({
     resolver: zodResolver(authSchema),
     defaultValues: { email: '', password: '' }
@@ -21,13 +46,12 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
     setLoading(true)
 
     setTimeout(() => {
-      toast('Sucesso!', {
-        description: `Bem-vindo, ${data.email}!`
+      toast('Success!', {
+        description: `Welcome, ${data.email}!`
       })
 
       setLoading(false)
     }, 5000)
-
   }
 
   return (
@@ -72,7 +96,7 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
       </Form>
       <div className={'relative after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border'}>
         <span className={'relative z-10 px-2 text-muted-foreground bg-background'}>
-          ou
+          or
         </span>
       </div>
       {config.socialButtons && (
