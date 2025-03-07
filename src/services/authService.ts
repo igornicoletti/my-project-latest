@@ -6,6 +6,12 @@ const API_URL = 'http://localhost:5000/users'
 export const signinService = async (email: string, password: string) => {
   try {
     const response = await axiosInstance.post(`${API_URL}/login`, { email, password })
+
+    // Armazenando o token JWT após login, caso ele exista na resposta
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token) // Armazenando o token
+    }
+
     return { data: response.data, error: null }
   } catch (error) {
     if (error instanceof AxiosError) {

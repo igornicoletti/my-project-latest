@@ -1,5 +1,5 @@
 export * from './custom/AuthForm'
-export * from './custom/ForgotDialog'
+export * from './custom/ForgotPassword'
 export * from './custom/PrivateRoute'
 export * from './custom/PublicRoute'
 export * from './custom/ThemeToggle'

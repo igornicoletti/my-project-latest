@@ -1,4 +1,4 @@
-import { Button, ForgotDialog, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/components'
+import { Button, ForgotPassword, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/components'
 import { AuthFormProps } from '@/types'
 import { authSchema } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -53,7 +53,7 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
                     <div className={'flex items-center justify-between'}>
                       <FormLabel>{data.label}</FormLabel>
                       {data.id === 'password' && config.forgotPassword &&
-                        <ForgotDialog />
+                        <ForgotPassword />
                       }
                     </div>
                     <FormControl>
