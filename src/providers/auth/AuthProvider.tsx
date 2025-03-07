@@ -6,10 +6,19 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('auth') === 'true'
+  })
 
-  const login = () => setIsAuthenticated(true)
-  const logout = () => setIsAuthenticated(false)
+  const login = () => {
+    setIsAuthenticated(true)
+    localStorage.setItem('auth', 'true')
+  }
+
+  const logout = () => {
+    setIsAuthenticated(false)
+    localStorage.removeItem('auth')
+  }
 
   return (
     <AuthProviderContext.Provider value={{ isAuthenticated, login, logout }}>

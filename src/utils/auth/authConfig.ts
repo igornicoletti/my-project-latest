@@ -13,7 +13,7 @@ export const authConfig: AuthConfigData = {
   },
   register: {
     title: 'Bem-vindo à 2Ti',
-    description: 'Vamos começar! Preencha com as suas informações.',
+    description: 'Vamos começar! Preencha com suas informações.',
     buttonText: 'Cadastrar',
     question: 'Já tem uma conta?',
     linkText: 'Faça login',

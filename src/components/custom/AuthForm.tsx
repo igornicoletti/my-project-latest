@@ -21,8 +21,8 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
     setLoading(true)
 
     setTimeout(() => {
-      toast('Dados enviados com sucesso!', {
-        description: JSON.stringify(data, null, 2)
+      toast('Sucesso!', {
+        description: `Bem-vindo, ${data.email}!`
       })
 
       setLoading(false)
