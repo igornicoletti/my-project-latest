@@ -46,7 +46,7 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
         <p className='text-balance text-muted-foreground'>{config.description}</p>
       </div>
       <Form {...form}>
-        <form className='grid gap-6' onSubmit={form.handleSubmit(onSubmit)}>
+        <form className='grid gap-4' onSubmit={form.handleSubmit(onSubmit)}>
           {fields.map((field) => (
             <FormField
               key={field.id}
