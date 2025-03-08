@@ -2,21 +2,21 @@ import { Auth, AuthConfigProps } from '@/types'
 
 export const authConfig: Record<Auth, AuthConfigProps> = {
   signup: {
-    title: 'Criar uma conta',
-    description: 'Digite seus dados abaixo para criar sua conta',
-    buttonText: 'Cadastrar',
+    title: 'Crie sua conta da 2Ti',
+    description: 'Inscreva-se e tenha acesso à sua conta da 2Ti',
+    buttonText: 'Continuar',
     question: 'Já tem uma conta?',
-    linkText: 'Entrar',
+    linkText: 'Faça login',
     linkTo: '/signin',
     socialButtons: true,
     forgotPassword: false,
   },
   signin: {
-    title: 'Acesse sua conta 2Ti',
-    description: 'Digite seu e-mail abaixo para entrar na sua conta',
+    title: 'Acesse sua conta da 2Ti',
+    description: 'Faça login e tenha acesso à sua conta da 2Ti',
     buttonText: 'Entrar',
     question: 'Não tem uma conta?',
-    linkText: 'Cadastre-se',
+    linkText: 'Inscreva-se',
     linkTo: '/signup',
     socialButtons: true,
     forgotPassword: true,

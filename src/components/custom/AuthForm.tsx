@@ -3,7 +3,7 @@ import { signinService, signupService } from '@/services'
 import { AuthFormProps, SignInData, SignUpData } from '@/types'
 import { signInSchema, signUpSchema } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AppleLogo, GoogleLogo } from '@phosphor-icons/react'
+import { AppleLogo, GithubLogo, GoogleLogo } from '@phosphor-icons/react'
 import { useForm } from 'react-hook-form'
 import { Link, useLocation } from 'react-router-dom'
 import { toast } from 'sonner'
@@ -42,11 +42,11 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
   return (
     <div className='grid gap-6'>
       <div className='grid gap-2'>
-        <h1 className='text-2xl font-semibold'>{config.title}</h1>
+        <h1 className='text-xl sm:text-2xl font-semibold'>{config.title}</h1>
         <p className='text-balance text-muted-foreground'>{config.description}</p>
       </div>
       <Form {...form}>
-        <form className='grid gap-4' onSubmit={form.handleSubmit(onSubmit)}>
+        <form className='grid gap-6' onSubmit={form.handleSubmit(onSubmit)}>
           {fields.map((field) => (
             <FormField
               key={field.id}
@@ -77,17 +77,18 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
         <div className='grid gap-6'>
           <div className='relative after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border'>
             <span className='relative z-10 px-2 text-muted-foreground bg-background'>
-              ou
+              ou continuar com
             </span>
           </div>
-          <div className='grid sm:grid-cols-2 gap-2'>
-            <Button variant='secondary'>
+          <div className='grid grid-cols-3 gap-2'>
+            <Button variant='secondary' aria-label='Faça login com a Apple'>
               <AppleLogo size={24} weight='duotone' />{' '}
-              Login via Apple
             </Button>
-            <Button variant='secondary'>
+            <Button variant='secondary' aria-label='Faça login com o GitHub'>
+              <GithubLogo size={24} weight='duotone' />{' '}
+            </Button>
+            <Button variant='secondary' aria-label='Faça login com o Google'>
               <GoogleLogo size={24} weight='duotone' />{' '}
-              Login via Google
             </Button>
           </div>
         </div>
