@@ -2,14 +2,6 @@ import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMe
 import { useTheme } from '@/providers'
 import { Moon, Sun } from '@phosphor-icons/react'
 
-/**
- * Theme Toggle Component.
- *
- * This component provides a dropdown menu to switch between light, dark, and system themes.
- * The selected theme is applied via the `setTheme` function from the ThemeProvider.
- *
- * @returns {JSX.Element} The theme toggle component.
- */
 export const ThemeToggle = () => {
   const { setTheme } = useTheme()
 

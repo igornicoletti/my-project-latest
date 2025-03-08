@@ -1,17 +1,18 @@
 import { AuthForm } from '@/components'
+import { AuthFormProps } from '@/types'
 import { authConfig, authField } from '@/utils'
 import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 
 export const AuthPage = () => {
   const location = useLocation()
-  const isSignIn = location.pathname.includes('signin')
+  const isSignUp = location.pathname === '/signup'
 
-  const { config, fields } = useMemo(() => {
-    return isSignIn
-      ? { config: authConfig.login, fields: authField.login }
-      : { config: authConfig.register, fields: authField.register }
-  }, [isSignIn])
+  const { config, fields } = useMemo<AuthFormProps>(() => {
+    return isSignUp
+      ? { config: authConfig.register, fields: authField.register }
+      : { config: authConfig.login, fields: authField.login }
+  }, [isSignUp])
 
   return (
     <div className='min-h-screen grid place-items-center p-6'>

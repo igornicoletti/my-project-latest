@@ -1,4 +1,8 @@
-import { axiosInstance } from './axiosInstance'
+import { axiosInstance } from '@/services'
+
+const setTokenCookie = (token: string) => {
+  document.cookie = `token=${token}; path=/; secure; samesite=strict`
+}
 
 const authRequest = async (endpoint: string, data: Record<string, string>) => {
   try {
@@ -10,14 +14,28 @@ const authRequest = async (endpoint: string, data: Record<string, string>) => {
   }
 }
 
-export const signinService = (email: string, password: string) => {
-  return authRequest('/signin', { email, password })
+export const signinService = async (email: string, password: string) => {
+  const response = await authRequest('/signin', { email, password })
+
+  if (response.token)
+    setTokenCookie(response.token)
+
+  return response
 }
 
-export const signupService = (username: string, email: string, password: string) => {
-  return authRequest('/signup', { username, email, password })
+export const signupService = async (username: string, email: string, password: string) => {
+  const response = await authRequest('/signup', { username, email, password })
+
+  if (response.token)
+    setTokenCookie(response.token)
+
+  return response
 }
 
 export const forgotPasswordService = (email: string) => {
   return authRequest('/forgot-password', { email })
+}
+
+export const logoutService = () => {
+  document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
 }

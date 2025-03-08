@@ -21,10 +21,16 @@ export const ForgotPassword = () => {
       if (response?.error)
         throw new Error(response.error)
 
-      toast.success(`Instruções enviadas para o e-mail ${data.email}`)
+      toast.success(`Instruções enviadas para ${data.email}`)
+
       form.reset()
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Ocorreu um erro inesperado.'
+      const errorMessage = error instanceof Error
+        ? error.message.includes('not found')
+          ? 'E-mail não encontrado. Verifique e tente novamente.'
+          : error.message
+        : 'Ocorreu um erro inesperado.'
+
       toast.error(errorMessage)
     }
   }
@@ -52,9 +58,9 @@ export const ForgotPassword = () => {
                 <FormItem>
                   <FormLabel>E-mail</FormLabel>
                   <FormControl>
-                    <Input {...formField} type='email' />
+                    <Input value={formField.value} onChange={formField.onChange} type='email' required />
                   </FormControl>
-                  <FormMessage className='-mt-1 text-right text-xs' />
+                  <FormMessage className='-mt-1 ml-auto text-xs' />
                 </FormItem>
               )}
             />

@@ -1,4 +1,5 @@
 export * from './auth/authConfig'
 export * from './auth/authField'
 export * from './auth/authForm'
+export * from './auth/authSchema'
 export * from './theme/themeProps'

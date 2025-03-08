@@ -1,6 +1,6 @@
 import { Button, ForgotPassword, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/components'
 import { signinService, signupService } from '@/services'
-import { AuthFormProps } from '@/types'
+import { AuthFormProps, SignInData, SignUpData } from '@/types'
 import { signInSchema, signUpSchema } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AppleLogo, GoogleLogo } from '@phosphor-icons/react'
@@ -9,20 +9,16 @@ import { Link, useLocation } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-type SignUpData = z.infer<typeof signUpSchema>
-type SignInData = z.infer<typeof signInSchema>
-
 export const AuthForm = ({ config, fields }: AuthFormProps) => {
   const location = useLocation()
-
   const isSignup = location.pathname.includes('signup')
   const schema = isSignup ? signUpSchema : signInSchema
 
-  const form = useForm<SignUpData | SignInData>({
+  const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
-    defaultValues: isSignup
-      ? { username: '', email: '', password: '' }
-      : { email: '', password: '' }
+    defaultValues: Object
+      .fromEntries(Object.keys(schema.shape)
+        .map(key => [key, ''])) as z.infer<typeof schema>
   })
 
   const onSubmit = async (data: SignUpData | SignInData) => {
@@ -31,12 +27,14 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
         ? await signupService(data.username, data.email, data.password)
         : await signinService(data.email, data.password)
 
-      if (response?.error)
-        throw new Error(response.error)
+      if (response?.error) throw new Error(response.error)
 
       toast.success(`Autenticado: ${data.email}`)
+      form.reset()
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Ocorreu um erro inesperado.'
+      const errorMessage = error instanceof Error
+        ? error.message
+        : 'Ocorreu um erro inesperado.'
       toast.error(errorMessage)
     }
   }
@@ -53,7 +51,7 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
             <FormField
               key={field.id}
               control={form.control}
-              name={isSignup && field.id === 'username' ? 'username' : field.id as 'email' | 'password'}
+              name={field.id as keyof z.infer<typeof schema>}
               render={({ field: formField }) => (
                 <FormItem>
                   <div className='grid gap-2'>
