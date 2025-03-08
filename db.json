@@ -6,14 +6,28 @@
       "password": "123456"
     },
     {
-      "id": "38df",
-      "email": "user@exemple.com",
-      "password": "123456"
+      "id": "2f55",
+      "data": {
+        "username": "Igor93",
+        "email": "user@example.com",
+        "password": "123456"
+      }
     },
     {
-      "id": "7072",
-      "email": "igor93nicoletti@gmail.com",
-      "password": "123"
+      "id": "8bca",
+      "data": {
+        "username": "Igor93",
+        "email": "user@example.com",
+        "password": "123456"
+      }
+    },
+    {
+      "id": "233d",
+      "data": {
+        "username": "Igor93",
+        "email": "igor93nicoletti@gmail.com",
+        "password": "123456789"
+      }
     }
   ]
 }

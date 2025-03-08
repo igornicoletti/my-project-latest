@@ -31,5 +31,5 @@ export const PublicRoute = ({ children }: PublicRouteProps) => {
   const { isAuthenticated } = useAuth()
 
   // Redirect to dashboard if authenticated, otherwise render children
-  return isAuthenticated ? <Navigate to="/dashboard" /> : children
+  return isAuthenticated ? <Navigate to='/dashboard' /> : children
 }
