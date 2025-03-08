@@ -54,7 +54,7 @@ export const ForgotPassword = () => {
                   <FormControl>
                     <Input {...formField} type='email' />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className='-mt-1 text-right text-xs' />
                 </FormItem>
               )}
             />

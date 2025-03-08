@@ -62,9 +62,9 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
                       {field.id === 'password' && config.forgotPassword && <ForgotPassword />}
                     </div>
                     <FormControl>
-                      <Input {...formField} type={field.type} />
+                      <Input {...formField} type={field.type} required={field.required} />
                     </FormControl>
-                    <FormMessage className='-mt-2 text-right' />
+                    <FormMessage className='-mt-1 ml-auto text-xs font-medium' />
                   </div>
                 </FormItem>
               )}
