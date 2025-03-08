@@ -10,8 +10,8 @@ export const AuthPage = () => {
 
   const { config, fields } = useMemo<AuthFormProps>(() => {
     return isSignUp
-      ? { config: authConfig.register, fields: authField.register }
-      : { config: authConfig.login, fields: authField.login }
+      ? { config: authConfig.signup, fields: authField.signup }
+      : { config: authConfig.signin, fields: authField.signin }
   }, [isSignUp])
 
   return (
