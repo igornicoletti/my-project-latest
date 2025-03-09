@@ -3,7 +3,7 @@ import { signinService, signupService } from '@/services'
 import { AuthFormProps, SignInData, SignUpData } from '@/types'
 import { signInSchema, signUpSchema } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AppleLogo, GithubLogo, GoogleLogo } from '@phosphor-icons/react'
+import { GithubLogo, GoogleLogo } from '@phosphor-icons/react'
 import { useForm } from 'react-hook-form'
 import { Link, useLocation } from 'react-router-dom'
 import { toast } from 'sonner'
@@ -35,6 +35,7 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
       const errorMessage = error instanceof Error
         ? error.message
         : 'Ocorreu um erro inesperado.'
+
       toast.error(errorMessage)
     }
   }
@@ -77,18 +78,17 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
         <div className='grid gap-6'>
           <div className='relative after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border'>
             <span className='relative z-10 px-2 text-muted-foreground bg-background'>
-              ou continuar com
+              ou
             </span>
           </div>
-          <div className='grid grid-cols-3 gap-2'>
-            <Button variant='secondary' aria-label='Faça login com a Apple'>
-              <AppleLogo size={24} weight='duotone' />{' '}
-            </Button>
-            <Button variant='secondary' aria-label='Faça login com o GitHub'>
+          <div className='grid sm:grid-cols-2 gap-4'>
+            <Button variant='secondary'>
               <GithubLogo size={24} weight='duotone' />{' '}
+              Entre com o GitHub
             </Button>
-            <Button variant='secondary' aria-label='Faça login com o Google'>
+            <Button variant='secondary'>
               <GoogleLogo size={24} weight='duotone' />{' '}
+              Entre com o Google
             </Button>
           </div>
         </div>
