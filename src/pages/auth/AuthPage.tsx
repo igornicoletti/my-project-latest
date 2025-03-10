@@ -15,7 +15,7 @@ export const AuthPage = () => {
   }, [isSignUp])
 
   return (
-    <div className='min-h-screen grid place-items-center p-6'>
+    <div className='min-h-screen grid place-items-center'>
       <div className='w-full max-w-md text-sm sm:text-base text-center'>
         <AuthForm config={config} fields={fields} />
       </div>

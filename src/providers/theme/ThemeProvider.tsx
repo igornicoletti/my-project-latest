@@ -1,6 +1,6 @@
+import { ThemeProviderContext } from '@/providers'
 import { Theme, ThemeProviderProps } from '@/types'
 import { useEffect, useState } from 'react'
-import { ThemeProviderContext } from './ThemeContext'
 
 /**
  * ThemeProvider

@@ -6,15 +6,17 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-type ForgotPasswordData = z.infer<typeof forgotPasswordSchema>
+interface ForgotPasswordProps {
+  children: React.ReactNode
+}
 
-export const ForgotPassword = () => {
-  const form = useForm<ForgotPasswordData>({
+export const ForgotPassword = ({ children }: ForgotPasswordProps) => {
+  const form = useForm<z.infer<typeof forgotPasswordSchema>>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: { email: '' }
   })
 
-  const onSubmit = async (data: ForgotPasswordData) => {
+  const onSubmit = async (data: z.infer<typeof forgotPasswordSchema>) => {
     try {
       const response = await forgotPasswordService(data.email)
 
@@ -22,7 +24,6 @@ export const ForgotPassword = () => {
         throw new Error(response.error)
 
       toast.success(`Instruções enviadas para ${data.email}`)
-
       form.reset()
     } catch (error) {
       const errorMessage = error instanceof Error
@@ -38,9 +39,7 @@ export const ForgotPassword = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className='p-0 h-4 underline-offset-4 hover:underline' variant='link'>
-          Esqueceu sua senha?
-        </Button>
+        {children}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -50,7 +49,7 @@ export const ForgotPassword = () => {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form className={'grid gap-2'} onSubmit={form.handleSubmit(onSubmit)}>
+          <form className='grid gap-2' onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
               name='email'
@@ -65,9 +64,7 @@ export const ForgotPassword = () => {
               )}
             />
             <DialogFooter>
-              <Button type='submit'>
-                Enviar
-              </Button>
+              <Button type='submit'>Enviar</Button>
             </DialogFooter>
           </form>
         </Form>

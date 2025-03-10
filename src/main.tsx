@@ -1,4 +1,4 @@
-import { ThemeToggle, Toaster } from '@/components'
+import { Toaster } from '@/components'
 import '@/index.css'
 import { AuthProvider, ThemeProvider } from '@/providers'
 import { router } from '@/router'
@@ -9,7 +9,6 @@ import { RouterProvider } from 'react-router-dom'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-      <ThemeToggle />
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>

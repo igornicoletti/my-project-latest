@@ -27,7 +27,8 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
         ? await signupService(data.username, data.email, data.password)
         : await signinService(data.email, data.password)
 
-      if (response?.error) throw new Error(response.error)
+      if (response?.error)
+        throw new Error(response.error)
 
       toast.success(`Autenticado: ${data.email}`)
       form.reset()
@@ -41,10 +42,14 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
   }
 
   return (
-    <div className='grid gap-6'>
+    <div className='grid gap-6 px-6 py-16'>
       <div className='grid gap-2'>
-        <h1 className='text-xl sm:text-2xl font-semibold'>{config.title}</h1>
-        <p className='text-balance text-muted-foreground'>{config.description}</p>
+        <h1 className='text-2xl font-semibold'>
+          {config.title}
+        </h1>
+        <p className='text-balance text-muted-foreground'>
+          {config.description}
+        </p>
       </div>
       <Form {...form}>
         <form className='grid gap-6' onSubmit={form.handleSubmit(onSubmit)}>
@@ -57,11 +62,22 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
                 <FormItem>
                   <div className='grid gap-2'>
                     <div className='flex items-center justify-between'>
-                      <FormLabel>{field.label}</FormLabel>
-                      {field.id === 'password' && config.forgotPassword && <ForgotPassword />}
+                      <FormLabel>
+                        {field.label}
+                      </FormLabel>
+                      {field.id === 'password' && config.forgotPassword && (
+                        <ForgotPassword>
+                          <Button className='p-0 h-4 underline-offset-4 hover:underline' variant='link'>
+                            Esqueceu sua senha?
+                          </Button>
+                        </ForgotPassword>
+                      )}
                     </div>
                     <FormControl>
-                      <Input {...formField} type={field.type} required={field.required} />
+                      <Input
+                        {...formField}
+                        type={field.type}
+                        required={field.required} />
                     </FormControl>
                     <FormMessage className='-mt-1 ml-auto text-xs font-medium' />
                   </div>
@@ -78,17 +94,17 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
         <div className='grid gap-6'>
           <div className='relative after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border'>
             <span className='relative z-10 px-2 text-muted-foreground bg-background'>
-              ou
+              ou continue com
             </span>
           </div>
-          <div className='grid sm:grid-cols-2 gap-4'>
+          <div className='grid grid-cols-2 gap-4'>
             <Button variant='secondary'>
-              <GithubLogo size={24} weight='duotone' />{' '}
-              Entre com o GitHub
+              <GithubLogo size={24} weight='duotone' />
+              <span className='hidden sm:inline-flex'>Entre com o</span>{' '}GitHub
             </Button>
             <Button variant='secondary'>
-              <GoogleLogo size={24} weight='duotone' />{' '}
-              Entre com o Google
+              <GoogleLogo size={24} weight='duotone' />
+              <span className='hidden sm:inline-flex'>Entre com o</span>{' '}Google
             </Button>
           </div>
         </div>

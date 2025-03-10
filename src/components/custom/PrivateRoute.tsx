@@ -6,11 +6,12 @@ interface PrivateRouteProps {
 }
 
 export const PrivateRoute = ({ children }: PrivateRouteProps) => {
-  const { isAuthenticated } = useAuth()
   const location = useLocation()
+  const { isAuthenticated } = useAuth()
 
-  if (!isAuthenticated)
-    <Navigate to='/signin' state={{ from: location.pathname }} />
+  if (!isAuthenticated) {
+    return <Navigate to='/signin' state={{ from: location.pathname }} />
+  }
 
   return children
 }

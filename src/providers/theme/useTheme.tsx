@@ -1,5 +1,5 @@
+import { ThemeProviderContext } from '@/providers'
 import { useContext } from 'react'
-import { ThemeProviderContext } from './ThemeContext'
 
 /**
  * useTheme

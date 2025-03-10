@@ -1,5 +1,5 @@
-import { PrivateRoute, PublicRoute } from '@/components'
-import { AuthPage } from '@/pages'
+import { PublicRoute } from '@/components'
+import { AuthPage, SidebarPage } from '@/pages'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 
 export const router = createBrowserRouter([
@@ -26,9 +26,9 @@ export const router = createBrowserRouter([
   {
     path: '/dashboard',
     element: (
-      <PrivateRoute>
-        <p>Dashboard</p>
-      </PrivateRoute>
+      <PublicRoute>
+        <SidebarPage />
+      </PublicRoute>
     ),
   },
 ])
