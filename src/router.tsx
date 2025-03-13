@@ -31,4 +31,12 @@ export const router = createBrowserRouter([
       </PublicRoute>
     ),
   },
+  {
+    path: '/projects',
+    element: (
+      <PublicRoute>
+        <SidebarPage />
+      </PublicRoute>
+    ),
+  },
 ])

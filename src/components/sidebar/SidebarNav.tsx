@@ -2,37 +2,32 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger, SidebarGroup, Side
 import { CaretRight, Icon } from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
 
-type Props = {
-  items: {
+type SidebarNavProps = {
+  nav: {
     title: string
     url: string
     icon: Icon
-    isActive?: boolean
-    items?: {
+    isActive: boolean
+    items: {
       title: string
       url: string
     }[]
   }[]
 }
 
-export const NavMain = ({ items }: Props) => {
+export const SidebarNav = ({ nav }: SidebarNavProps) => {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Collapsible</SidebarGroupLabel>
+      <SidebarGroupLabel>Application</SidebarGroupLabel>
       <SidebarMenu>
-        {items.map((item) => (
-          <Collapsible
-            key={item.title}
-            asChild
-            defaultOpen={item.isActive}
-            className="group/collapsible"
-          >
+        {nav.map((item) => (
+          <Collapsible asChild key={item.title} defaultOpen={item.isActive} className='group/collapsible'>
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton tooltip={item.title}>
-                  {item.icon && <item.icon />}
+                  <item.icon weight='duotone' />
                   <span>{item.title}</span>
-                  <CaretRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                  <CaretRight className='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
                 </SidebarMenuButton>
               </CollapsibleTrigger>
               <CollapsibleContent>
