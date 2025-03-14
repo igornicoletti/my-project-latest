@@ -1,16 +1,16 @@
 import { Button, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/components'
-import { forgotPasswordService } from '@/services'
+import { passwordService } from '@/services'
 import { forgotPasswordSchema } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-interface ForgotPasswordProps {
+interface AuthPasswordProps {
   children: React.ReactNode
 }
 
-export const ForgotPassword = ({ children }: ForgotPasswordProps) => {
+export const AuthPassword = ({ children }: AuthPasswordProps) => {
   const form = useForm<z.infer<typeof forgotPasswordSchema>>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: { email: '' }
@@ -18,7 +18,7 @@ export const ForgotPassword = ({ children }: ForgotPasswordProps) => {
 
   const onSubmit = async (data: z.infer<typeof forgotPasswordSchema>) => {
     try {
-      const response = await forgotPasswordService(data.email)
+      const response = await passwordService(data.email)
 
       if (response?.error)
         throw new Error(response.error)

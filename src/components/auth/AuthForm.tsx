@@ -1,4 +1,4 @@
-import { Button, ForgotPassword, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/components'
+import { AuthPassword, Button, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/components'
 import { signinService, signupService } from '@/services'
 import { AuthFormProps, SignInData, SignUpData } from '@/types'
 import { signInSchema, signUpSchema } from '@/utils'
@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form'
 import { Link, useLocation } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
+
 
 export const AuthForm = ({ config, fields }: AuthFormProps) => {
   const location = useLocation()
@@ -66,11 +67,11 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
                         {field.label}
                       </FormLabel>
                       {field.id === 'password' && config.forgotPassword && (
-                        <ForgotPassword>
+                        <AuthPassword>
                           <Button className='p-0 h-4 underline-offset-4 hover:underline' variant='link'>
                             Esqueceu sua senha?
                           </Button>
-                        </ForgotPassword>
+                        </AuthPassword>
                       )}
                     </div>
                     <FormControl>

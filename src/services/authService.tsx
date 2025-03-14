@@ -30,7 +30,7 @@ export const signupService = async (username: string, email: string, password: s
   return response
 }
 
-export const forgotPasswordService = (email: string) => {
+export const passwordService = (email: string) => {
   return authRequest('/forgot-password', { email })
 }
 

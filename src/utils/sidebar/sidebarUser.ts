@@ -2,6 +2,7 @@ import { Gear, SignOut, UserCircle } from '@phosphor-icons/react'
 
 export const sidebarUser = {
   name: 'Igor Nicoletti',
+  fallback: 'IN',
   email: 'igor93nicoletti@gmail.com',
   avatar: '/unnamed.jpg',
   items: [

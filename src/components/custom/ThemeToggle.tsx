@@ -8,7 +8,7 @@ export const ThemeToggle = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className=' mx-4' variant='ghost' size='icon'>
+        <Button variant='ghost' size='icon'>
           <Sun className='absolute rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' weight='duotone' />
           <Moon className='absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' weight='duotone' />
           <span className='sr-only'>
