@@ -1,9 +1,8 @@
-import { useMemo } from 'react'
-import { useLocation } from 'react-router-dom'
-
 import { AuthForm } from '@/components'
 import { AuthFormProps } from '@/types'
 import { authConfig, authField } from '@/utils'
+import { useMemo } from 'react'
+import { useLocation } from 'react-router-dom'
 
 export const AuthPage = () => {
   const location = useLocation()

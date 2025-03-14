@@ -2,17 +2,17 @@ import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMe
 import { useTheme } from '@/providers'
 import { Moon, Sun } from '@phosphor-icons/react'
 
-export const ThemeToggle = () => {
+export const ThemeToggle = ({ ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   const { setTheme } = useTheme()
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='ghost' size='icon'>
+        <Button variant='ghost' size='icon' {...props}>
           <Sun className='absolute rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' weight='duotone' />
           <Moon className='absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' weight='duotone' />
           <span className='sr-only'>
-            Alternar tema
+            Theme Toggle
           </span>
         </Button>
       </DropdownMenuTrigger>

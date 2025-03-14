@@ -2,9 +2,9 @@ import { Auth, AuthConfigProps } from '@/types'
 
 export const authConfig: Record<Auth, AuthConfigProps> = {
   signup: {
-    title: 'Crie sua conta',
+    title: 'Inscreva-se para uma conta',
     description: 'Informe seus dados para obter sua conta.',
-    buttonText: 'Continuar',
+    buttonText: 'Inscrever-se',
     question: 'Já tem uma conta?',
     linkText: 'Entrar',
     linkTo: '/signin',

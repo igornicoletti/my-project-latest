@@ -1,5 +1,5 @@
 import { PublicRoute } from '@/components'
-import { AuthPage, NotFound, SidebarPage } from '@/pages'
+import { AuthPage, NotFoundPage, SidebarPage } from '@/pages'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 
 export const router = createBrowserRouter([
@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/projects',
+    path: '/all/projects',
     element: (
       <PublicRoute>
         <SidebarPage />
@@ -41,6 +41,6 @@ export const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <NotFound />
+    element: <NotFoundPage />
   }
 ])

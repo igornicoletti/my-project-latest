@@ -32,7 +32,7 @@ export const SidebarNav = ({ data }: SidebarNavProps) => {
                       <SidebarMenuSub>
                         {item.items?.map((subItem) => (
                           <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton asChild className={currentPath === subItem.url ? 'text-foreground' : 'text-muted-foreground'}>
+                            <SidebarMenuSubButton asChild className={currentPath === subItem.url ? '' : 'text-muted-foreground'}>
                               <Link to={subItem.url}>
                                 <span>{subItem.title}</span>
                               </Link>
