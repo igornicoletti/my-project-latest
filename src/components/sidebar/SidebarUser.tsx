@@ -38,8 +38,10 @@ export const SidebarUser = ({ user }: SidebarUserProps) => {
             <DropdownMenuGroup>
               {user.items.map((item, index) => (
                 <DropdownMenuItem key={index} aria-label={item.title}>
-                  <item.icon weight='duotone' />
-                  <Link to={item.url}>{item.title}</Link>
+                  <Link to={item.url}>
+                    <item.icon weight='duotone' />
+                    {item.title}
+                  </Link>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuGroup>
