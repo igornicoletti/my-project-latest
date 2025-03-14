@@ -40,7 +40,7 @@ export const SidebarUser = ({ user }: SidebarUserProps) => {
                 <DropdownMenuItem asChild key={index} aria-label={item.title}>
                   <Link to={item.url}>
                     <item.icon weight='duotone' />
-                    <span>{item.title} aaa</span>
+                    <span>{item.title}</span>
                   </Link>
                 </DropdownMenuItem>
               ))}
