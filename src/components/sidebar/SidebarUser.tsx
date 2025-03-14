@@ -37,10 +37,10 @@ export const SidebarUser = ({ user }: SidebarUserProps) => {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               {user.items.map((item, index) => (
-                <DropdownMenuItem key={index} aria-label={item.title}>
+                <DropdownMenuItem asChild key={index} aria-label={item.title}>
                   <Link to={item.url}>
                     <item.icon weight='duotone' />
-                    <span>{item.title}</span>
+                    <span>{item.title} aaa</span>
                   </Link>
                 </DropdownMenuItem>
               ))}
