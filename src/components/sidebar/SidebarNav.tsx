@@ -3,23 +3,23 @@ import { SidebarNavProps } from '@/types'
 import { CaretRight } from '@phosphor-icons/react'
 import { Link, useLocation } from 'react-router-dom'
 
-export const SidebarNav = ({ data }: SidebarNavProps) => {
+export const SidebarNav = ({ sidebarNav }: SidebarNavProps) => {
   const location = useLocation()
   const currentPath = location.pathname
 
-  const isParentActive = (items: { title: string; url: string }[]) => {
-    return items.some((item) => currentPath.startsWith(item.url))
+  const isParentActive = (items: { name: string; path: string }[]) => {
+    return items.some((item) => currentPath.startsWith(item.path))
   }
 
   return (
     <>
-      {data.map((group) => (
+      {sidebarNav.map((group) => (
         <SidebarGroup key={group.label}>
           <SidebarGroupLabel>{group.label}</SidebarGroupLabel>
           <SidebarMenu>
-            {group.nav.map((item) => {
+            {group.categories.map((item) => {
               return (
-                <Collapsible asChild key={item.title} defaultOpen={isParentActive(item.items || [])} className='group/collapsible'>
+                <Collapsible asChild key={item.title} defaultOpen={isParentActive(item.navigations || [])} className='group/collapsible'>
                   <SidebarMenuItem>
                     <CollapsibleTrigger asChild>
                       <SidebarMenuButton tooltip={item.title} aria-label={item.title}>
@@ -30,11 +30,11 @@ export const SidebarNav = ({ data }: SidebarNavProps) => {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <SidebarMenuSub>
-                        {item.items?.map((subItem) => (
-                          <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton asChild className={currentPath === subItem.url ? '' : 'text-muted-foreground'}>
-                              <Link to={subItem.url}>
-                                <span>{subItem.title}</span>
+                        {item.navigations?.map((subItem) => (
+                          <SidebarMenuSubItem key={subItem.name}>
+                            <SidebarMenuSubButton asChild className={currentPath === subItem.path ? '' : 'text-muted-foreground'}>
+                              <Link to={subItem.path}>
+                                <span>{subItem.name}</span>
                               </Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>

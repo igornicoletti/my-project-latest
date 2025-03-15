@@ -1,82 +1,42 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components'
 import { SidebarNavProps } from '@/types'
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
-// Função para capitalizar a primeira letra de cada palavra
-const capitalize = (str: string) => {
-  return str
-    .split(' ') // Divide a string em palavras
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitaliza a primeira letra
-    .join(' ') // Junta as palavras de volta
-}
-
-export const SidebarBreadcrumb = ({ data }: SidebarNavProps) => {
+export const SidebarBreadcrumb = ({ sidebarNav }: SidebarNavProps) => {
   const location = useLocation()
-  const segments = location.pathname.split('/').filter(Boolean)
+  const breadcrumbSegments = location.pathname.split('/').filter(Boolean)
+  const breadcrumbCategory = sidebarNav.flatMap((data) => data.categories)
+    .find((category) => category.navigations.some((navigation) => location.pathname.includes(navigation.path)))
 
-  const findBreadcrumbs = (segments: string[]) => {
-    let pathAccumulator = ''
-
+  const handleBreadcrumb = (segments: string[]) => {
     return segments.map((segment, index) => {
-      pathAccumulator = `/${segments.slice(0, index + 1).join('/')}`
-      const isLast = index === segments.length - 1
-
-      const matchedItem = data
-        .flatMap(group => group.nav)
-        .flatMap(category => category.items)
-        .find(item => item.url === pathAccumulator)
-
-      const label = matchedItem?.title || segment
-      const capitalizedLabel = capitalize(label)
+      const breadcrumbPath = segments.slice(0, index + 1).join('/')
+      const breadcrumbItem = sidebarNav.flatMap((data) => data.categories)
+        .flatMap((category) => category.navigations)
+        .find((navigation) => navigation.path === `/${breadcrumbPath}`)
 
       return (
-        <React.Fragment key={pathAccumulator}>
+        <React.Fragment key={breadcrumbPath}>
           <BreadcrumbItem>
-            {isLast ? (
-              <BreadcrumbPage aria-current='page'>{capitalizedLabel}</BreadcrumbPage>
-            ) : (
-              <BreadcrumbLink asChild>
-                <Link to={pathAccumulator}>{capitalizedLabel}</Link>
-              </BreadcrumbLink>
-            )}
+            <BreadcrumbPage>
+              {breadcrumbItem?.name || segment}
+            </BreadcrumbPage>
           </BreadcrumbItem>
-          {!isLast && <BreadcrumbSeparator key={`separator-${pathAccumulator}`} />}
+          {index < segments.length - 1 && <BreadcrumbSeparator />}
         </React.Fragment>
       )
     })
   }
 
-  const parentGroup = data.find(group =>
-    group.nav.some(category =>
-      category.items.some(item => location.pathname.includes(item.url))
-    )
-  )
-
-  const parentCategory = parentGroup?.nav.find(category =>
-    category.items.some(item => location.pathname.includes(item.url))
-  )
-
   return (
     <Breadcrumb aria-label='Breadcrumb'>
       <BreadcrumbList>
-        {parentGroup && (
-          <>
-            <BreadcrumbItem key='parentGroup'>
-              <span>{capitalize(parentGroup.label)}</span>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator key='parentGroup-separator' />
-          </>
-        )}
-        {parentCategory && (
-          <>
-            <BreadcrumbItem key='parentCategory'>
-              <span>{capitalize(parentCategory.title)}</span>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator key='parentCategory-separator' />
-          </>
-        )}
-        {findBreadcrumbs(segments)}
+        <BreadcrumbItem>
+          {breadcrumbCategory?.title}
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        {handleBreadcrumb(breadcrumbSegments)}
       </BreadcrumbList>
     </Breadcrumb>
   )

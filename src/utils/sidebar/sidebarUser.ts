@@ -1,20 +1,25 @@
-import { Gear, SignOut, UserCircle } from '@phosphor-icons/react'
+import { Gear, GithubLogo, SignOut, User } from '@phosphor-icons/react'
 
 export const sidebarUser = {
   name: 'Igor Nicoletti',
   fallback: 'IN',
-  email: 'igor93nicoletti@gmail.com',
+  email: '@igor93nicoletti',
   avatar: '/unnamed.jpg',
   items: [
     {
-      title: 'Account',
-      url: '/account',
-      icon: UserCircle,
+      title: 'Profile',
+      url: '/profile',
+      icon: User,
     },
     {
       title: 'Settings',
       url: '/settings',
       icon: Gear,
+    },
+    {
+      title: 'GitHub Repo',
+      url: 'https://github.com/igornicoletti?tab=repositories',
+      icon: GithubLogo,
     },
     {
       title: 'Log out',

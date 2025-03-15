@@ -1,13 +1,13 @@
 export interface SidebarNavProps {
-  data: {
+  sidebarNav: {
     label: string
-    nav: {
+    categories: {
       title: string
       icon: Icon
       isActive: boolean
-      items: {
-        title: string
-        url: string
+      navigations: {
+        name: string
+        path: string
       }[]
     }[]
   }[]

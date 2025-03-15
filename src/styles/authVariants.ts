@@ -4,7 +4,7 @@ export const authVariants = tv({
   slots: {
     container: 'grid gap-6',
     header: 'grid gap-2',
-    title: 'text-xl sm:text-2xl font-semibold',
+    title: 'text-xl sm:text-2xl font-medium',
     description: 'text-balance text-muted-foreground',
     form: 'grid gap-6',
     formField: 'grid gap-2',

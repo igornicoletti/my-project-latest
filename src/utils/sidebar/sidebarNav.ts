@@ -1,21 +1,21 @@
-import { Code } from '@phosphor-icons/react'
+import { Planet } from '@phosphor-icons/react'
 
 export const sidebarNav = [
   {
     label: 'Platform',
-    nav: [
+    categories: [
       {
         title: 'Playground',
-        icon: Code,
+        icon: Planet,
         isActive: false,
-        items: [
+        navigations: [
           {
-            title: 'Dashboard',
-            url: '/dashboard'
+            name: 'Dashboard',
+            path: '/dashboard'
           },
           {
-            title: 'Projects',
-            url: '/all/projects'
+            name: 'Projects',
+            path: '/projects'
           },
         ]
       }
