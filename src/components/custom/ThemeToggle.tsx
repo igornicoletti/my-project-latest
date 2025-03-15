@@ -1,5 +1,5 @@
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components'
-import { useTheme } from '@/providers'
+import { useTheme } from '@/hooks'
 import { Moon, Sun } from '@phosphor-icons/react'
 
 export const ThemeToggle = ({ ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) => {

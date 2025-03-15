@@ -1,4 +1,3 @@
-
 export interface SidebarUserProps {
   user: {
     name: string

@@ -1,4 +1,4 @@
-import { useAuth } from '@/providers'
+import { useAuth } from '@/hooks'
 import { Navigate, useLocation } from 'react-router-dom'
 
 interface PrivateRouteProps {

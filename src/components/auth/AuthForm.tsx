@@ -45,6 +45,8 @@ export const AuthForm = ({ config, fields }: AuthFormProps) => {
   return (
     <div className='grid gap-6 px-6 py-16'>
       <div className='grid gap-2'>
+        <Link className='text-balance text-xs' to='/dashboard'>Pineapple</Link>
+
         <h1 className='text-2xl font-semibold'>{config.title}</h1>
         <p className='text-balance text-muted-foreground'>{config.description}</p>
       </div>

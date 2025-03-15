@@ -2,7 +2,7 @@ export const authField = {
   signin: [
     {
       id: 'email',
-      label: 'Endereço de e-mail',
+      label: 'E-mail',
       type: 'email',
       required: true
     },
@@ -16,13 +16,13 @@ export const authField = {
   signup: [
     {
       id: 'username',
-      label: 'Nome completo',
+      label: 'Nome',
       type: 'text',
       required: true
     },
     {
       id: 'email',
-      label: 'Endereço de e-mail',
+      label: 'E-mail',
       type: 'email',
       required: true
     },
