@@ -6,7 +6,6 @@ import { Link, useLocation } from 'react-router-dom'
 export const SidebarNav = ({ sidebarNav }: SidebarNavProps) => {
   const location = useLocation()
   const currentPath = location.pathname
-
   const isParentActive = (items: { name: string; path: string }[]) => {
     return items.some((item) => currentPath.startsWith(item.path))
   }
