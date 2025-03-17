@@ -10,13 +10,15 @@ interface AuthPasswordProps {
   children: React.ReactNode
 }
 
+type ForgotPasswordData = z.infer<typeof forgotPasswordSchema>
+
 export const AuthPassword = ({ children }: AuthPasswordProps) => {
   const form = useForm<z.infer<typeof forgotPasswordSchema>>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: { email: '' }
   })
 
-  const onSubmit = async (data: z.infer<typeof forgotPasswordSchema>) => {
+  const onSubmit = async (data: ForgotPasswordData) => {
     try {
       const response = await passwordService(data.email)
 
@@ -38,31 +40,23 @@ export const AuthPassword = ({ children }: AuthPasswordProps) => {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        {children}
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Esqueceu a senha?</DialogTitle>
-          <DialogDescription>
-            Sem problemas! Indique o endereço de e-mail que utilizou quando se registou e siga as instruções que receberá por e-mail.
-          </DialogDescription>
+          <DialogDescription>Sem problemas! Indique o endereço de e-mail que utilizou quando se registou e siga as instruções que receberá por e-mail.</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form className='grid gap-2' onSubmit={form.handleSubmit(onSubmit)}>
-            <FormField
-              control={form.control}
-              name='email'
-              render={({ field: formField }) => (
-                <FormItem>
-                  <FormLabel>E-mail</FormLabel>
-                  <FormControl>
-                    <Input value={formField.value} onChange={formField.onChange} type='email' required />
-                  </FormControl>
-                  <FormMessage className='-mt-1 ml-auto text-xs' />
-                </FormItem>
-              )}
-            />
+            <FormField control={form.control} name='email' render={({ field: formField }) => (
+              <FormItem>
+                <FormLabel>E-mail</FormLabel>
+                <FormControl>
+                  <Input value={formField.value} onChange={formField.onChange} type='email' required />
+                </FormControl>
+                <FormMessage className='-mt-1 ml-auto text-xs' />
+              </FormItem>
+            )} />
             <DialogFooter>
               <Button type='submit'>Enviar</Button>
             </DialogFooter>

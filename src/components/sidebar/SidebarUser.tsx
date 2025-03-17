@@ -4,39 +4,34 @@ import { CaretUpDown } from '@phosphor-icons/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const SidebarUser = ({ user }: SidebarUserProps) => {
+export const SidebarUser = ({ avatar, email, fallback, items, title, label }: SidebarUserProps) => {
   return (
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SidebarMenuButton size='lg' className='data-[state=open]:bg-sidebar-accent'>
+            <SidebarMenuButton className='data-[state=open]:bg-sidebar-accent' size='lg'>
               <Avatar className='h-8 w-8 rounded-full'>
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className='rounded-full'>{user.fallback}</AvatarFallback>
+                <AvatarImage src={avatar} alt={title} />
+                <AvatarFallback className='rounded-full'>{fallback}</AvatarFallback>
               </Avatar>
-              <div className='grid flex-1 text-left text-sm leading-tight'>
-                <span className='truncate font-semibold'>{user.name}</span>
-                <span className='truncate text-xs text-muted-foreground'>{user.email}</span>
+              <div className='grid flex-1'>
+                <span className='truncate font-semibold'>{title}</span>
+                <span className='truncate text-xs text-muted-foreground'>{email}</span>
               </div>
-              <CaretUpDown className='ml-auto' />
+              <CaretUpDown className='ml-auto shrink-0' />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent className='w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg' align='end' sideOffset={4} aria-label='User Actions'>
-            <DropdownMenuLabel className='px-1 py-1.5 text-left text-sm leading-tight font-sidebar'>
-              <span className='truncate'>My Account</span>
-            </DropdownMenuLabel>
+            <DropdownMenuLabel className='p-2'>{label}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              {user.items.map((item, index) => (
-                <React.Fragment key={item.url || index}>
-                  {index === user.items.length - 1 && <DropdownMenuSeparator />}
+              {items.map((item, i) => (
+                <React.Fragment key={item.url || i}>
+                  {i === items.length - 1 && <DropdownMenuSeparator />}
                   <DropdownMenuItem asChild aria-label={item.title}>
-                    <Link
-                      to={item.url}
-                      target={item.title === 'GitHub Repo' ? '_blank' : undefined}
-                      rel={item.title === 'GitHub Repo' ? 'noopener noreferrer' : undefined}>
-                      <item.icon weight='duotone' />
+                    <Link to={item.url}>
+                      <item.icon className='shrink-0' weight='duotone' />
                       <span>{item.title}</span>
                     </Link>
                   </DropdownMenuItem>

@@ -1,17 +1,20 @@
 import { AuthForm } from '@/components'
-import { AuthFormProps } from '@/types'
-import { authConfig, authField } from '@/utils'
+import { authConfigData, authFieldData } from '@/utils'
 import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 
-export const AuthPage = () => {
+const useIsSignUp = () => {
   const location = useLocation()
-  const isSignUp = location.pathname === '/signup'
+  return location.pathname === '/signup'
+}
 
-  const { config, fields } = useMemo<AuthFormProps>(() => {
+export const AuthPage = () => {
+  const isSignUp = useIsSignUp()
+
+  const { config, fields } = useMemo(() => {
     return isSignUp
-      ? { config: authConfig.signup, fields: authField.signup }
-      : { config: authConfig.signin, fields: authField.signin }
+      ? { config: authConfigData.signup, fields: authFieldData.signup }
+      : { config: authConfigData.signin, fields: authFieldData.signin }
   }, [isSignUp])
 
   return (

@@ -1,42 +1,43 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components'
-import { SidebarNavProps } from '@/types'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
+import { sidebarNavData } from '@/utils'
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
-export const SidebarBreadcrumb = ({ sidebarNav }: SidebarNavProps) => {
+export const SidebarBreadcrumb = () => {
   const location = useLocation()
-  const breadcrumbSegments = location.pathname.split('/').filter(Boolean)
-  const breadcrumbCategory = sidebarNav.flatMap((data) => data.categories)
-    .find((category) => category.navigations.some((navigation) => location.pathname.includes(navigation.path)))
 
-  const handleBreadcrumb = (segments: string[]) => {
-    return segments.map((segment, index) => {
-      const breadcrumbPath = segments.slice(0, index + 1).join('/')
-      const breadcrumbItem = sidebarNav.flatMap((data) => data.categories)
-        .flatMap((category) => category.navigations)
-        .find((navigation) => navigation.path === `/${breadcrumbPath}`)
+  const findBreadcrumbs = (path: string) => {
+    for (const section of sidebarNavData) {
+      const navigation = section.navigations?.find(nav => nav.url === path)
+      if (navigation) return [{ label: section.title }, { label: navigation.title }]
 
-      return (
-        <React.Fragment key={breadcrumbPath}>
-          <BreadcrumbItem>
-            <BreadcrumbPage>
-              {breadcrumbItem?.name || segment}
-            </BreadcrumbPage>
-          </BreadcrumbItem>
-          {index < segments.length - 1 && <BreadcrumbSeparator />}
-        </React.Fragment>
-      )
-    })
+      for (const category of section.categories || []) {
+        const subItem = category.items.find(item => item.url === path)
+        if (subItem) return [{ label: section.title }, { label: category.title }, { label: subItem.title }]
+      }
+    }
+    return []
   }
 
+  const breadcrumbs = findBreadcrumbs(location.pathname)
+
   return (
-    <Breadcrumb aria-label='Breadcrumb'>
+    <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
-          {breadcrumbCategory?.title}
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        {handleBreadcrumb(breadcrumbSegments)}
+        {breadcrumbs.map((breadcrumb, index) => (
+          <React.Fragment key={breadcrumb.label}>
+            {index > 0 && <BreadcrumbSeparator />}
+            <BreadcrumbItem>
+              {index === breadcrumbs.length - 1 ? (
+                <BreadcrumbPage>{breadcrumb.label}</BreadcrumbPage>
+              ) : (
+                <BreadcrumbLink asChild>
+                  <Link to='#'>{breadcrumb.label}</Link>
+                </BreadcrumbLink>
+              )}
+            </BreadcrumbItem>
+          </React.Fragment>
+        ))}
       </BreadcrumbList>
     </Breadcrumb>
   )

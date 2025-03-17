@@ -1,15 +1,9 @@
 import { useAuth } from '@/hooks'
 import { Navigate } from 'react-router-dom'
 
-interface PublicRouteProps {
-  children: React.ReactNode
-}
-
-export const PublicRoute = ({ children }: PublicRouteProps) => {
+export const PublicRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useAuth()
-  if (isAuthenticated) {
-    return <Navigate to='/dashboard' />
-  }
+  if (isAuthenticated) return <Navigate to='/dashboard' />
 
   return children
 }

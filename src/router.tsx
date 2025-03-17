@@ -24,25 +24,20 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/',
-    children: [
-      {
-        path: '/dashboard',
-        element: (
-          <PublicRoute>
-            <SidebarPage />
-          </PublicRoute>
-        ),
-      },
-      {
-        path: '/projects',
-        element: (
-          <PublicRoute>
-            <SidebarPage />
-          </PublicRoute>
-        ),
-      },
-    ]
+    path: '/dashboard',
+    element: (
+      <PublicRoute>
+        <SidebarPage />
+      </PublicRoute>
+    ),
+  },
+  {
+    path: '/projects',
+    element: (
+      <PublicRoute>
+        <SidebarPage />
+      </PublicRoute>
+    ),
   },
   {
     path: '*',
