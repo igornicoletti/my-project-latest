@@ -1,12 +1,12 @@
 export interface ThemeProviderProps {
   children: React.ReactNode
-  defaultTheme?: Theme
+  defaultTheme?: ThemeTypeProps
   storageKey?: string
 }
 
 export interface ThemeContextProps {
-  theme: Theme
-  setTheme: (theme: Theme) => void
+  theme: ThemeTypeProps
+  setTheme: (theme: ThemeTypeProps) => void
 }
 
 export type ThemeTypeProps = 'dark' | 'light' | 'system'
