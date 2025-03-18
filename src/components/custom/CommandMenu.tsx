@@ -21,7 +21,7 @@ export const CommandMenu = () => {
               {i > 0 && <CommandSeparator />}
               <CommandGroup heading={section.title}>
                 {(section.navigations ?? section.categories)?.flatMap((item) => 'items' in item ? item.items : [item]).map((nav) => (
-                  <CommandItem key={nav.url} onSelect={() => { setOpen(false) }}>
+                  <CommandItem key={nav.url} onSelect={() => setOpen(false)}>
                     <Link to={nav.url} className='flex items-center gap-2 w-full'>
                       <nav.icon className='shrink-0' weight='duotone' />
                       <span>{nav.title}</span>
