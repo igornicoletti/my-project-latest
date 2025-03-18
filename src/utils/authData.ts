@@ -25,12 +25,37 @@ export const authConfigData: Record<AuthTypeProps, AuthConfigProps> = {
 
 export const authFieldData: Record<AuthTypeProps, AuthFieldProps[]> = {
   signin: [
-    { id: 'email', label: 'E-mail', type: 'email', required: true },
-    { id: 'password', label: 'Senha', type: 'password', required: true }
+    {
+      id: 'email',
+      label: 'E-mail',
+      type: 'email',
+      required: true
+    },
+    {
+      id: 'password',
+      label: 'Senha',
+      type: 'password',
+      required: true
+    }
   ],
   signup: [
-    { id: 'username', label: 'Nome', type: 'text', required: true },
-    { id: 'email', label: 'E-mail', type: 'email', required: true },
-    { id: 'password', label: 'Senha', type: 'password', required: true }
+    {
+      id: 'username',
+      label: 'Nome',
+      type: 'text',
+      required: true
+    },
+    {
+      id: 'email',
+      label: 'E-mail',
+      type: 'email',
+      required: true
+    },
+    {
+      id: 'password',
+      label: 'Senha',
+      type: 'password',
+      required: true
+    }
   ]
 }

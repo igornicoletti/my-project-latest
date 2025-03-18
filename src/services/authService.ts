@@ -16,17 +16,13 @@ const authRequest = async (endpoint: string, data: Record<string, string>) => {
 
 export const signinService = async (email: string, password: string) => {
   const response = await authRequest('/signin', { email, password })
-  if (response.token)
-    setTokenCookie(response.token)
-
+  if (response.token) setTokenCookie(response.token)
   return response
 }
 
 export const signupService = async (username: string, email: string, password: string) => {
   const response = await authRequest('/signup', { username, email, password })
-  if (response.token)
-    setTokenCookie(response.token)
-
+  if (response.token) setTokenCookie(response.token)
   return response
 }
 

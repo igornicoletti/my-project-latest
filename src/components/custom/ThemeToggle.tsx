@@ -1,6 +1,6 @@
-import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components'
+import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui'
 import { useTheme } from '@/hooks'
-import { Moon, Sun } from '@phosphor-icons/react'
+import { Desktop, Moon, Sun } from '@phosphor-icons/react'
 
 export const ThemeToggle = ({ ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   const { setTheme } = useTheme()
@@ -15,14 +15,17 @@ export const ThemeToggle = ({ ...props }: React.ButtonHTMLAttributes<HTMLButtonE
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end'>
-        <DropdownMenuItem onClick={() => setTheme('light')}>
-          Light
-        </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('dark')}>
-          Dark
+          <Moon className='shrink-0' weight='duotone' />
+          <span>Dark</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('light')}>
+          <Sun className='shrink-0' weight='duotone' />
+          <span>Light</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('system')}>
-          System
+          <Desktop className='shrink-0' weight='duotone' />
+          <span>System</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -1,5 +1,5 @@
 import { SidebarNavProps, SidebarUserProps } from '@/types'
-import { AppWindow, GameController, Gear, GithubLogo, SignOut, User } from '@phosphor-icons/react'
+import { AppWindow, Folder, GameController, Gear, GithubLogo, SignOut, User } from '@phosphor-icons/react'
 
 export const sidebarNavData: SidebarNavProps[] = [
   {
@@ -21,6 +21,7 @@ export const sidebarNavData: SidebarNavProps[] = [
         title: 'Playground',
         items: [
           {
+            icon: Folder,
             title: 'Projects',
             url: '/projects'
           },
@@ -54,7 +55,7 @@ export const sidebarUserData: SidebarUserProps = {
     },
     {
       icon: SignOut,
-      title: 'Log Out',
+      title: 'Sign Out',
       url: '/',
     },
   ]

@@ -1,4 +1,5 @@
-import { Sidebar, SidebarBreadcrumb, SidebarContent, SidebarFooter, SidebarHeader, SidebarInset, SidebarNav, SidebarProvider, SidebarTrigger, SidebarUser, ThemeToggle } from '@/components'
+import { CommandMenu, SidebarBreadcrumb, SidebarNav, SidebarUser, ThemeToggle } from '@/components'
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarInset, SidebarProvider, SidebarTrigger, } from '@/components/ui'
 import { sidebarNavData, sidebarUserData } from '@/utils'
 import { CrownSimple, LineVertical } from '@phosphor-icons/react'
 
@@ -28,7 +29,10 @@ export const SidebarPage = () => {
             <LineVertical className='shrink-0' weight='duotone' />
             <SidebarBreadcrumb />
           </div>
-          <ThemeToggle />
+          <div className='flex items-center gap-2'>
+            <CommandMenu />
+            <ThemeToggle />
+          </div>
         </header>
         <main className='flex flex-1 flex-col gap-4 p-4 pt-0'>
           <div className='min-h-min flex-1 rounded-xl'>

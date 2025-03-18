@@ -2,11 +2,7 @@ import { AuthProviderContext } from '@/providers'
 import { deleteCookie, getCookie, setCookie } from '@/utils'
 import { useEffect, useState } from 'react'
 
-interface AuthProviderProps {
-  children: React.ReactNode
-}
-
-export const AuthProvider = ({ children }: AuthProviderProps) => {
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
 
   useEffect(() => {

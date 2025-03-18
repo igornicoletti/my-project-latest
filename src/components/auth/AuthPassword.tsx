@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/components'
+import { Button, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/components/ui'
 import { passwordService } from '@/services'
 import { forgotPasswordSchema } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -6,13 +6,9 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-interface AuthPasswordProps {
-  children: React.ReactNode
-}
-
 type ForgotPasswordData = z.infer<typeof forgotPasswordSchema>
 
-export const AuthPassword = ({ children }: AuthPasswordProps) => {
+export const AuthPassword = () => {
   const form = useForm<z.infer<typeof forgotPasswordSchema>>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: { email: '' }
@@ -21,9 +17,7 @@ export const AuthPassword = ({ children }: AuthPasswordProps) => {
   const onSubmit = async (data: ForgotPasswordData) => {
     try {
       const response = await passwordService(data.email)
-
-      if (response?.error)
-        throw new Error(response.error)
+      if (response?.error) throw new Error(response.error)
 
       toast.success(`Instruções enviadas para ${data.email}`)
       form.reset()
@@ -40,7 +34,11 @@ export const AuthPassword = ({ children }: AuthPasswordProps) => {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogTrigger asChild>
+        <Button className='p-0 h-4 underline-offset-4 hover:underline' variant='link'>
+          Esqueceu sua senha?
+        </Button>
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Esqueceu a senha?</DialogTitle>

@@ -1,4 +1,5 @@
-import { AuthPassword, Button, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/components'
+import { AuthPassword } from '@/components'
+import { Button, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/components/ui'
 import { signinService, signupService } from '@/services'
 import { AuthProps } from '@/types'
 import { signInSchema, signUpSchema } from '@/utils'
@@ -58,11 +59,7 @@ export const AuthForm = ({ config, fields }: AuthProps) => {
                   <div className='flex items-center justify-between'>
                     <FormLabel>{field.label}</FormLabel>
                     {field.id === 'password' && config.forgotPassword && (
-                      <AuthPassword>
-                        <Button className='p-0 h-4 underline-offset-4 hover:underline' variant='link'>
-                          Esqueceu sua senha?
-                        </Button>
-                      </AuthPassword>
+                      <AuthPassword />
                     )}
                   </div>
                   <FormControl>
