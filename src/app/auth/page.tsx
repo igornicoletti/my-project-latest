@@ -19,7 +19,7 @@ export const AuthPage = () => {
 
   return (
     <div className='min-h-screen grid place-items-center'>
-      <div className='w-full max-w-md text-sm sm:text-base text-center'>
+      <div className='w-full max-w-md text-sm text-center'>
         <AuthForm config={config} fields={fields} />
       </div>
     </div>

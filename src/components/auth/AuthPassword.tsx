@@ -35,20 +35,18 @@ export const AuthPassword = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className='p-0 h-4 underline-offset-4 hover:underline' variant='link'>
-          Esqueceu sua senha?
-        </Button>
+        <Button className='h-auto py-0' variant='link'>Forgot your password?</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Esqueceu a senha?</DialogTitle>
-          <DialogDescription>Sem problemas! Indique o endereço de e-mail que utilizou quando se registou e siga as instruções que receberá por e-mail.</DialogDescription>
+          <DialogTitle>Forgot your password?</DialogTitle>
+          <DialogDescription>No problem! Enter the email address you used to register and follow the instructions you’ll receive by email.</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form className='grid gap-2' onSubmit={form.handleSubmit(onSubmit)}>
             <FormField control={form.control} name='email' render={({ field: formField }) => (
               <FormItem>
-                <FormLabel>E-mail</FormLabel>
+                <FormLabel>Email address</FormLabel>
                 <FormControl>
                   <Input value={formField.value} onChange={formField.onChange} type='email' required />
                 </FormControl>
@@ -56,7 +54,7 @@ export const AuthPassword = () => {
               </FormItem>
             )} />
             <DialogFooter>
-              <Button type='submit'>Enviar</Button>
+              <Button className='w-full' type='submit'>Submit</Button>
             </DialogFooter>
           </form>
         </Form>

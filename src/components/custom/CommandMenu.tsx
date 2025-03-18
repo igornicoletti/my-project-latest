@@ -10,7 +10,7 @@ export const CommandMenu = () => {
   return (
     <>
       <Button variant='ghost' size='icon' onClick={() => setOpen(true)}>
-        <MagnifyingGlass className='shrink-0' weight='duotone' />
+        <MagnifyingGlass className='shrink-0' weight='thin' />
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder='Search navigation...' />
@@ -23,7 +23,7 @@ export const CommandMenu = () => {
                 {(section.navigations ?? section.categories)?.flatMap((item) => 'items' in item ? item.items : [item]).map((nav) => (
                   <CommandItem key={nav.url} onSelect={() => setOpen(false)}>
                     <Link to={nav.url} className='flex items-center gap-2 w-full'>
-                      <nav.icon className='shrink-0' weight='duotone' />
+                      <nav.icon className='shrink-0' weight='thin' />
                       <span>{nav.title}</span>
                     </Link>
                   </CommandItem>

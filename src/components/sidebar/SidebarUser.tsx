@@ -31,7 +31,7 @@ export const SidebarUser = ({ avatar, email, fallback, items, title, label }: Si
                   {i === items.length - 1 && <DropdownMenuSeparator />}
                   <DropdownMenuItem asChild aria-label={item.title}>
                     <Link to={item.url}>
-                      <item.icon className='shrink-0' weight='duotone' />
+                      <item.icon className='shrink-0' weight='thin' />
                       <span>{item.title}</span>
                     </Link>
                   </DropdownMenuItem>

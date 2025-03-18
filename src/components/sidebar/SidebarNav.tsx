@@ -15,7 +15,7 @@ export const SidebarNav = ({ title, categories, navigations }: SidebarNavProps) 
           <SidebarMenuItem key={i}>
             <SidebarMenuButton asChild tooltip={navigate.title} aria-label={navigate.title}>
               <Link to={navigate.url}>
-                <navigate.icon className='shrink-0' weight='duotone' />
+                <navigate.icon className='shrink-0' weight='thin' />
                 <span>{navigate.title}</span>
               </Link>
             </SidebarMenuButton>
@@ -26,9 +26,9 @@ export const SidebarNav = ({ title, categories, navigations }: SidebarNavProps) 
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton tooltip={category.title} aria-label={category.title}>
-                  <category.icon className='shrink-0' weight='duotone' />
+                  <category.icon className='shrink-0' weight='thin' />
                   <span>{category.title}</span>
-                  <CaretRight className='shrink-0 ml-auto transform transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
+                  <CaretRight weight='thin' className='shrink-0 ml-auto transform transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
                 </SidebarMenuButton>
               </CollapsibleTrigger>
               <CollapsibleContent>
