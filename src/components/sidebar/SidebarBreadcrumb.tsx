@@ -8,12 +8,19 @@ export const SidebarBreadcrumb = () => {
 
   const findBreadcrumbs = (path: string) => {
     for (const section of sidebarNavData) {
-      const navigation = section.navigations?.find(nav => nav.url === path)
-      if (navigation) return [{ label: section.title }, { label: navigation.title }]
-
-      for (const category of section.categories || []) {
-        const subItem = category.items.find(item => item.url === path)
-        if (subItem) return [{ label: section.title }, { label: category.title }, { label: subItem.title }]
+      for (const items of section.items) {
+        if (items.url === path) {
+          return [{ title: items.title, url: items.url }]
+        }
+        if (items.items) {
+          const subNav = items.items.find(sub => sub.url === path)
+          if (subNav) {
+            return [
+              { title: items.title, url: items.url },
+              { title: subNav.title, url: subNav.url }
+            ]
+          }
+        }
       }
     }
     return []
@@ -25,14 +32,14 @@ export const SidebarBreadcrumb = () => {
     <Breadcrumb>
       <BreadcrumbList>
         {breadcrumbs.map((breadcrumb, index) => (
-          <React.Fragment key={breadcrumb.label}>
+          <React.Fragment key={breadcrumb.url}>
             {index > 0 && <BreadcrumbSeparator />}
             <BreadcrumbItem>
               {index === breadcrumbs.length - 1 ? (
-                <BreadcrumbPage>{breadcrumb.label}</BreadcrumbPage>
+                <BreadcrumbPage>{breadcrumb.title}</BreadcrumbPage>
               ) : (
                 <BreadcrumbLink asChild>
-                  <Link to='#'>{breadcrumb.label}</Link>
+                  <Link to={breadcrumb.url}>{breadcrumb.title}</Link>
                 </BreadcrumbLink>
               )}
             </BreadcrumbItem>

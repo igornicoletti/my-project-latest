@@ -1,47 +1,48 @@
-import { Collapsible, CollapsibleContent, CollapsibleTrigger, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from '@/components/ui'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from '@/components/ui'
 import { SidebarNavProps } from '@/types'
 import { CaretRight } from '@phosphor-icons/react'
 import { Link, useLocation } from 'react-router-dom'
 
-export const SidebarNav = ({ title, categories, navigations }: SidebarNavProps) => {
+export const SidebarNav = ({ title, items }: SidebarNavProps) => {
   const location = useLocation()
-  const currentPath = location.pathname
+
+  const isItemActive = (url: string) => location.pathname.startsWith(url)
+
+  const isSubGroupActive = (subItems?: { url: string }[]) =>
+    subItems?.some(sub => isItemActive(sub.url))
 
   return (
     <SidebarGroup>
       <SidebarGroupLabel>{title}</SidebarGroupLabel>
       <SidebarMenu>
-        {navigations?.map((navigate, i) => (
-          <SidebarMenuItem key={i}>
-            <SidebarMenuButton asChild tooltip={navigate.title} aria-label={navigate.title}>
-              <Link to={navigate.url}>
-                <navigate.icon className='shrink-0' weight='thin' />
-                <span>{navigate.title}</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        ))}
-        {categories?.map((category, i) => (
-          <Collapsible asChild key={i} className='group/collapsible'>
+        {items.map((item) => (
+          <Collapsible key={item.title} asChild defaultOpen={isItemActive(item.url) || isSubGroupActive(item.items)}>
             <SidebarMenuItem>
-              <CollapsibleTrigger asChild>
-                <SidebarMenuButton tooltip={category.title} aria-label={category.title}>
-                  <category.icon className='shrink-0' weight='thin' />
-                  <span>{category.title}</span>
-                  <CaretRight weight='thin' className='shrink-0 ml-auto transform transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
-                </SidebarMenuButton>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarMenuSub>
-                  {category.items?.map((item) => (
-                    <SidebarMenuSubItem key={item.title}>
-                      <SidebarMenuSubButton asChild className={currentPath === item.url ? '' : 'text-muted-foreground'}>
-                        <Link to={item.url}>{item.title}</Link>
-                      </SidebarMenuSubButton>
-                    </SidebarMenuSubItem>
-                  ))}
-                </SidebarMenuSub>
-              </CollapsibleContent>
+              <SidebarMenuButton asChild tooltip={item.title} className={isItemActive(item.url) ? '' : 'text-muted-foreground'}>
+                <Link to={item.url}>
+                  <item.icon className='shrink-0' weight='thin' /> {item.title}
+                </Link>
+              </SidebarMenuButton>
+              {item.items?.length ? (
+                <>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuAction className='data-[state=open]:rotate-90'>
+                      <CaretRight className='shrink-0' weight='thin' />
+                    </SidebarMenuAction>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      {item.items.map((subItem) => (
+                        <SidebarMenuSubItem key={subItem.title}>
+                          <SidebarMenuSubButton asChild className={isItemActive(subItem.url) ? '' : 'text-muted-foreground'}>
+                            <Link to={subItem.url}>{subItem.title}</Link>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                      ))}
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </>
+              ) : null}
             </SidebarMenuItem>
           </Collapsible>
         ))}

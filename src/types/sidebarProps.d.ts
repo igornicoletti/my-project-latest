@@ -1,11 +1,11 @@
 export interface SidebarNavProps {
   title: string
-  navigations?: SidebarNavItem[]
-  categories?: SidebarNavCategory[]
+  items: SidebarNavCategory[]
 }
 
 export interface SidebarNavCategory {
   icon: Icon
+  url: string
   isActive: boolean
   title: string
   items: SidebarNavItem[]
@@ -22,7 +22,6 @@ export interface SidebarUserProps {
   fallback: string
   email: string
   avatar: string
-  label: string
   items: SidebarUserItems[]
 }
 

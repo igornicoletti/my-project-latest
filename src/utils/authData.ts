@@ -23,7 +23,6 @@ export const authConfigData: Record<AuthTypeProps, AuthConfigProps> = {
   },
 }
 
-
 export const authFieldData: Record<AuthTypeProps, AuthFieldProps[]> = {
   signin: [
     {

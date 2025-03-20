@@ -28,15 +28,15 @@ export const SidebarPage = () => {
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
-        <header className='flex h-16 items-center justify-between gap-2 px-4'>
-          <div className='flex items-center gap-2'>
+        <header className='flex h-16 items-center justify-between gap-4 px-4'>
+          <div className='flex items-center gap-4'>
             <SidebarTrigger aria-label='Menu Toggle' />
             <LineVertical className='shrink-0' weight='thin' />
             <SidebarBreadcrumb />
           </div>
-          <div className='flex items-center gap-2'>
-            <ThemeToggle />
+          <div className='flex items-center gap-4'>
             <CommandMenu />
+            <ThemeToggle />
           </div>
         </header>
         <main className='flex flex-1 flex-col gap-4 p-4 pt-0'>

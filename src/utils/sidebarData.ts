@@ -1,30 +1,26 @@
 import { SidebarNavProps, SidebarUserProps } from '@/types'
-import { AppWindow, Folder, GameController, Gear, GithubLogo, SignOut, User } from '@phosphor-icons/react'
+import { AppWindow, Folder, GameController, Gear, SignOut, User } from '@phosphor-icons/react'
 
 export const sidebarNavData: SidebarNavProps[] = [
   {
-    title: 'Navigations',
-    navigations: [
-      {
-        icon: AppWindow,
-        title: 'Dashboard',
-        url: '/dashboard'
-      },
-    ]
-  },
-  {
-    title: 'Categories',
-    categories: [
+    title: 'Platform',
+    items: [
       {
         icon: GameController,
+        url: '/playground',
         isActive: false,
         title: 'Playground',
         items: [
           {
+            icon: AppWindow,
+            title: 'Dashboard',
+            url: '/playground/dashboard'
+          },
+          {
             icon: Folder,
             title: 'Projects',
-            url: '/projects'
-          },
+            url: '/playground/projects'
+          }
         ]
       }
     ]
@@ -36,7 +32,6 @@ export const sidebarUserData: SidebarUserProps = {
   fallback: '2Ti',
   email: '@igor93nicoletti',
   avatar: '/unnamed.jpg',
-  label: 'My account',
   items: [
     {
       icon: User,
@@ -47,11 +42,6 @@ export const sidebarUserData: SidebarUserProps = {
       icon: Gear,
       title: 'Settings',
       url: '/settings',
-    },
-    {
-      icon: GithubLogo,
-      title: 'GitHub Repo',
-      url: 'https://github.com/igornicoletti?tab=repositories',
     },
     {
       icon: SignOut,

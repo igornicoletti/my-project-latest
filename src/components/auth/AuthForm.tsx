@@ -5,6 +5,7 @@ import { AuthProps } from '@/types'
 import { signInSchema, signUpSchema } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { GithubLogo, GoogleLogo } from '@phosphor-icons/react'
+
 import { useForm } from 'react-hook-form'
 import { Link, useLocation } from 'react-router-dom'
 import { toast } from 'sonner'
@@ -78,12 +79,10 @@ export const AuthForm = ({ config, fields }: AuthProps) => {
             </div>
             <div className='grid grid-cols-2 gap-4'>
               <Button className='flex items-center gap-2' variant='secondary'>
-                <GithubLogo className='shrink-0' weight='thin' />
-                <span>GitHub</span>
+                <GithubLogo className='shrink-0' weight='thin' /> GitHub
               </Button>
               <Button className='flex items-center gap-2' variant='secondary'>
-                <GoogleLogo className='shrink-0' weight='thin' />
-                <span>Google</span>
+                <GoogleLogo className='shrink-0' weight='thin' /> Google
               </Button>
             </div>
           </div>

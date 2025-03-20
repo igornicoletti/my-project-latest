@@ -21,4 +21,10 @@ export interface AuthProps {
   fields: AuthFieldProps[]
 }
 
+export interface AuthContextProps {
+  isAuthenticated: boolean
+  authLogin: (token: string) => void
+  authLogout: () => void
+}
+
 export type AuthTypeProps = 'signup' | 'signin'
