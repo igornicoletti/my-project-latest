@@ -46,7 +46,7 @@ export const AuthForm = ({ config, fields }: AuthProps) => {
   }
 
   return (
-    <div className='grid gap-6 px-6 py-16'>
+    <div className='grid gap-6 p-6'>
       <div className='grid gap-2'>
         <h1 className='truncate text-xl font-medium'>{config.title}{' '}</h1>
         <p className='text-balance text-muted-foreground'>{config.description}</p>
@@ -57,13 +57,11 @@ export const AuthForm = ({ config, fields }: AuthProps) => {
             {fields.map((field) => (
               <FormField key={field.id} control={form.control} name={field.id as keyof z.infer<typeof schema>} render={({ field: formField }) => (
                 <FormItem>
-                  <div className='grid gap-2'>
-                    <FormLabel>{field.label}</FormLabel>
-                    <FormControl>
-                      <Input {...formField} type={field.type} required={field.required} />
-                    </FormControl>
-                    <FormMessage className='-mt-1 ml-auto text-xs' />
-                  </div>
+                  <FormLabel>{field.label}</FormLabel>
+                  <FormControl>
+                    <Input {...formField} type={field.type} required={field.required} />
+                  </FormControl>
+                  <FormMessage className='-mt-1 ml-auto text-sm' />
                 </FormItem>
               )} />
             ))}
@@ -77,11 +75,11 @@ export const AuthForm = ({ config, fields }: AuthProps) => {
                 or
               </span>
             </div>
-            <div className='grid grid-cols-2 gap-4'>
-              <Button className='flex items-center gap-2' variant='secondary'>
+            <div className='grid grid-cols-2 gap-2'>
+              <Button variant='secondary'>
                 <GithubLogo className='shrink-0' weight='thin' /> GitHub
               </Button>
-              <Button className='flex items-center gap-2' variant='secondary'>
+              <Button variant='secondary'>
                 <GoogleLogo className='shrink-0' weight='thin' /> Google
               </Button>
             </div>
@@ -90,9 +88,11 @@ export const AuthForm = ({ config, fields }: AuthProps) => {
       </div>
       <div className='grid gap-2'>
         {!isSignup && (<AuthPassword />)}
-        <div className='text-balance text-muted-foreground [&_a]:text-primary hover:[&_a]:underline [&_a]:underline-offset-4'>
-          <span>{config.question}{' '}</span>
-          <Link to={config.linkTo}>{config.linkText}</Link>
+        <div className='text-sm text-balance text-muted-foreground'>
+          {config.question}{' '}
+          <Link to={config.linkTo} className='text-primary hover:underline underline-offset-4'>
+            {config.linkText}
+          </Link>
         </div>
       </div>
     </div>

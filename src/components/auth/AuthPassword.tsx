@@ -35,9 +35,7 @@ export const AuthPassword = () => {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button className='h-auto py-0' variant='link'>Forgot your password?</Button>
-      </DialogTrigger>
+      <DialogTrigger className='text-sm text-primary hover:underline hover:underline-offset-4'>Forgot your password?</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Forgot your password?</DialogTitle>
@@ -51,7 +49,7 @@ export const AuthPassword = () => {
                 <FormControl>
                   <Input value={formField.value} onChange={formField.onChange} type='email' required />
                 </FormControl>
-                <FormMessage className='-mt-1 ml-auto text-xs' />
+                <FormMessage className='-mt-1 ml-auto text-sm' />
               </FormItem>
             )} />
             <DialogFooter>

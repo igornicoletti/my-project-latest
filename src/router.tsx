@@ -4,6 +4,10 @@ import { createBrowserRouter, Navigate } from 'react-router-dom'
 
 export const router = createBrowserRouter([
   {
+    path: '*',
+    element: <NotFoundPage />
+  },
+  {
     path: '/',
     element: <Navigate to='/signin' replace />,
   },
@@ -24,25 +28,19 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/playground',
+    path: '/dashboard',
     element: (
       <PublicRoute>
         <SidebarPage />
       </PublicRoute>
     ),
-    children: [
-      {
-        path: 'dashboard',
-        element: <div>Dashboard Content</div>, // Substitua pelo componente correto
-      },
-      {
-        path: 'projects',
-        element: <div>Projects Content</div>, // Substitua pelo componente correto
-      }
-    ]
   },
   {
-    path: '*',
-    element: <NotFoundPage />
-  }
+    path: '/projects',
+    element: (
+      <PublicRoute>
+        <SidebarPage />
+      </PublicRoute>
+    )
+  },
 ])

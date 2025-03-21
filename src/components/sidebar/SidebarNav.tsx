@@ -12,11 +12,11 @@ export const SidebarNav = ({ title, items }: SidebarNavProps) => {
     subItems?.some(sub => isItemActive(sub.url))
 
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>{title}</SidebarGroupLabel>
+    <SidebarGroup className="last:mt-auto">
+      {title && <SidebarGroupLabel>{title}</SidebarGroupLabel>}
       <SidebarMenu>
-        {items.map((item) => (
-          <Collapsible key={item.title} asChild defaultOpen={isItemActive(item.url) || isSubGroupActive(item.items)}>
+        {items.map((item, index) => (
+          <Collapsible key={index} asChild defaultOpen={isItemActive(item.url) || isSubGroupActive(item.items)}>
             <SidebarMenuItem>
               <SidebarMenuButton asChild tooltip={item.title} className={isItemActive(item.url) ? '' : 'text-muted-foreground'}>
                 <Link to={item.url}>
@@ -32,8 +32,8 @@ export const SidebarNav = ({ title, items }: SidebarNavProps) => {
                   </CollapsibleTrigger>
                   <CollapsibleContent>
                     <SidebarMenuSub>
-                      {item.items.map((subItem) => (
-                        <SidebarMenuSubItem key={subItem.title}>
+                      {item.items.map((subItem, index) => (
+                        <SidebarMenuSubItem key={index}>
                           <SidebarMenuSubButton asChild className={isItemActive(subItem.url) ? '' : 'text-muted-foreground'}>
                             <Link to={subItem.url}>{subItem.title}</Link>
                           </SidebarMenuSubButton>

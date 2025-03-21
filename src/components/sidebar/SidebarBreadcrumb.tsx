@@ -10,7 +10,9 @@ export const SidebarBreadcrumb = () => {
     for (const section of sidebarNavData) {
       for (const items of section.items) {
         if (items.url === path) {
-          return [{ title: items.title, url: items.url }]
+          return [
+            { title: section.title, url: '' },
+            { title: items.title, url: items.url }]
         }
         if (items.items) {
           const subNav = items.items.find(sub => sub.url === path)

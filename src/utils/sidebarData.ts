@@ -1,28 +1,42 @@
 import { SidebarNavProps, SidebarUserProps } from '@/types'
-import { AppWindow, Folder, GameController, Gear, SignOut, User } from '@phosphor-icons/react'
+import { Folder, Gear, Lifebuoy, PaperPlaneTilt, SignOut, SquaresFour, User } from '@phosphor-icons/react'
 
 export const sidebarNavData: SidebarNavProps[] = [
   {
-    title: 'Platform',
+    title: 'App',
     items: [
       {
-        icon: GameController,
-        url: '/playground',
+        icon: SquaresFour,
+        url: '/dashboard',
         isActive: false,
-        title: 'Playground',
-        items: [
-          {
-            icon: AppWindow,
-            title: 'Dashboard',
-            url: '/playground/dashboard'
-          },
-          {
-            icon: Folder,
-            title: 'Projects',
-            url: '/playground/projects'
-          }
-        ]
-      }
+        title: 'Dashboard',
+        items: []
+      },
+      {
+        icon: Folder,
+        url: '/projects',
+        isActive: false,
+        title: 'Projects',
+        items: []
+      },
+    ]
+  },
+  {
+    items: [
+      {
+        icon: Lifebuoy,
+        url: '/support',
+        isActive: false,
+        title: 'Support',
+        items: []
+      },
+      {
+        icon: PaperPlaneTilt,
+        url: '/feedback',
+        isActive: false,
+        title: 'Feedback',
+        items: []
+      },
     ]
   },
 ]
@@ -30,7 +44,7 @@ export const sidebarNavData: SidebarNavProps[] = [
 export const sidebarUserData: SidebarUserProps = {
   title: 'Igor Nicoletti',
   fallback: '2Ti',
-  email: '@igor93nicoletti',
+  email: 'igor93nicoletti@gmail.com',
   avatar: '/unnamed.jpg',
   items: [
     {

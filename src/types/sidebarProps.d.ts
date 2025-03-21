@@ -1,5 +1,5 @@
 export interface SidebarNavProps {
-  title: string
+  title?: string
   items: SidebarNavCategory[]
 }
 

@@ -24,17 +24,12 @@ export const SidebarUser = ({ avatar, email, fallback, items, title }: SidebarUs
               <CaretUpDown className='ml-auto shrink-0' />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
-          <DropdownMenuContent
-            className='w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg'
-            side={isMobile ? 'bottom' : 'right'}
-            align='end'
-            sideOffset={4}
-          >
+          <DropdownMenuContent className='w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg' align='end' sideOffset={4} side={isMobile ? 'bottom' : 'right'}>
             <DropdownMenuLabel className='p-0 font-normal'>
               <div className='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
                 <Avatar className='h-8 w-8 rounded-full'>
                   <AvatarImage src={avatar} alt={title} />
-                  <AvatarFallback className='rounded-full'>CN</AvatarFallback>
+                  <AvatarFallback className='rounded-full'>{fallback}</AvatarFallback>
                 </Avatar>
                 <div className='grid flex-1 text-left text-sm leading-tight'>
                   <span className='truncate font-semibold'>{title}</span>
@@ -44,9 +39,9 @@ export const SidebarUser = ({ avatar, email, fallback, items, title }: SidebarUs
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              {items.map((item, i) => (
-                <React.Fragment key={item.url || i}>
-                  {i === items.length - 1 && <DropdownMenuSeparator />}
+              {items.map((item, index) => (
+                <React.Fragment key={item.url || index}>
+                  {index === items.length - 1 && <DropdownMenuSeparator />}
                   <DropdownMenuItem asChild aria-label={item.title}>
                     <Link to={item.url}>
                       <item.icon className='shrink-0' weight='thin' /> {item.title}
