@@ -2,7 +2,10 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-import { Button, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/components/ui'
+import { Button } from '@/components/ui/button'
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 import { passwordService } from '@/services'
 import { forgotPasswordSchema } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -35,7 +38,7 @@ export const AuthPassword = () => {
 
   return (
     <Dialog>
-      <DialogTrigger className='text-sm text-primary hover:underline hover:underline-offset-4'>Forgot your password?</DialogTrigger>
+      <DialogTrigger className='text-sm hover:underline hover:underline-offset-4'>Forgot your password?</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Forgot your password?</DialogTitle>

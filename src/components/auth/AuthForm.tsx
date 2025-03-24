@@ -1,15 +1,17 @@
+import { useForm } from 'react-hook-form'
+import { Link, useLocation } from 'react-router-dom'
+import { toast } from 'sonner'
+import { z } from 'zod'
+
 import { AuthPassword } from '@/components'
-import { Button, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/components/ui'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 import { signinService, signupService } from '@/services'
 import { AuthProps } from '@/types'
 import { signInSchema, signUpSchema } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { GithubLogo, GoogleLogo } from '@phosphor-icons/react'
-
-import { useForm } from 'react-hook-form'
-import { Link, useLocation } from 'react-router-dom'
-import { toast } from 'sonner'
-import { z } from 'zod'
 
 type SignUpData = z.infer<typeof signUpSchema>
 type SignInData = z.infer<typeof signInSchema>
@@ -68,23 +70,21 @@ export const AuthForm = ({ config, fields }: AuthProps) => {
             <Button type='submit'>{config.buttonText}</Button>
           </form>
         </Form>
-        {!isSignup && (
-          <div className='grid gap-4'>
-            <div className='relative after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border'>
-              <span className='relative z-10 px-2 text-muted-foreground bg-background'>
-                or
-              </span>
-            </div>
-            <div className='grid grid-cols-2 gap-2'>
-              <Button variant='secondary'>
-                <GithubLogo className='shrink-0' weight='thin' /> GitHub
-              </Button>
-              <Button variant='secondary'>
-                <GoogleLogo className='shrink-0' weight='thin' /> Google
-              </Button>
-            </div>
+        <div className='grid gap-4'>
+          <div className='relative after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border'>
+            <span className='relative z-10 px-2 text-muted-foreground bg-background'>
+              or
+            </span>
           </div>
-        )}
+          <div className='grid grid-cols-2 gap-2'>
+            <Button variant='secondary'>
+              <GithubLogo weight='light' /> GitHub
+            </Button>
+            <Button variant='secondary'>
+              <GoogleLogo weight='light' /> Google
+            </Button>
+          </div>
+        </div>
       </div>
       <div className='grid gap-2'>
         {!isSignup && (<AuthPassword />)}

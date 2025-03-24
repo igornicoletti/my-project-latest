@@ -5,7 +5,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom'
 export const router = createBrowserRouter([
   {
     path: '*',
-    element: <NotFoundPage />
+    element: <NotFoundPage />,
   },
   {
     path: '/',
@@ -28,19 +28,25 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/dashboard',
+    path: '/',
     element: (
-      <PublicRoute>
-        <SidebarPage />
-      </PublicRoute>
+      <SidebarPage />
     ),
-  },
-  {
-    path: '/projects',
-    element: (
-      <PublicRoute>
-        <SidebarPage />
-      </PublicRoute>
-    )
+    children: [
+      {
+        path: 'dashboard',
+        element: <h1>Dashboard</h1>,
+        children: [
+          {
+            path: 'order',
+            element: <h1>Order</h1>,
+          },
+          {
+            path: 'projects',
+            element: <h1>Projects</h1>,
+          },
+        ],
+      },
+    ],
   },
 ])

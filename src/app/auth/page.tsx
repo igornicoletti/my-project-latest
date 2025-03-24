@@ -1,7 +1,8 @@
-import { AuthForm } from '@/components'
-import { authConfigData, authFieldData } from '@/utils'
 import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
+
+import { AuthForm } from '@/components'
+import { authConfigData, authFieldData } from '@/utils'
 
 const useIsSignUp = () => {
   const location = useLocation()

@@ -1,4 +1,5 @@
-import { Button, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '@/components/ui'
+import { Button } from '@/components/ui/button'
+import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '@/components/ui/command'
 import { sidebarNavData } from '@/utils'
 import { MagnifyingGlass } from '@phosphor-icons/react'
 import React, { useState } from 'react'
@@ -9,8 +10,8 @@ export const SidebarCommand = () => {
 
   return (
     <>
-      <Button variant='outline' onClick={() => setOpen(true)} className='justify-start w-40 lg:w-56'>
-        <MagnifyingGlass className='shrink-0' weight='thin' />Type to search...
+      <Button variant='secondary' onClick={() => setOpen(true)} className='justify-start w-40 lg:w-56'>
+        <MagnifyingGlass weight='light' />Search...
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder='Search navigation...' />
@@ -20,15 +21,25 @@ export const SidebarCommand = () => {
             <React.Fragment key={index}>
               {index > 0 && <CommandSeparator />}
               <CommandGroup heading={section.title}>
-                {section.items.flatMap((item) =>
-                  item.items ? [item, ...item.items] : [item]
-                ).map((nav, index) => (
-                  <CommandItem key={index} onSelect={() => setOpen(false)}>
-                    <Link to={nav.url} className='flex items-center gap-2 w-full'>
-                      <nav.icon className='shrink-0' weight='thin' />
-                      <span>{nav.title}</span>
-                    </Link>
-                  </CommandItem>
+                {section.items.map((item, itemIndex) => (
+                  <React.Fragment key={itemIndex}>
+                    <CommandItem onSelect={() => setOpen(false)}>
+                      <Link to={item.url} className='flex items-center gap-2 w-full'>
+                        <item.icon weight='light' />
+                        <span>{item.title}</span>
+                      </Link>
+                    </CommandItem>
+                    {'items' in item && item.items?.length > 0 &&
+                      item.items.map((subItem, subIndex) => (
+                        <CommandItem key={`${itemIndex}-${subIndex}`} onSelect={() => setOpen(false)}>
+                          <Link to={subItem.url} className='flex items-center gap-2 w-full'>
+                            <subItem.icon weight='light' />
+                            <span>{subItem.title}</span>
+                          </Link>
+                        </CommandItem>
+                      ))
+                    }
+                  </React.Fragment>
                 ))}
               </CommandGroup>
             </React.Fragment>

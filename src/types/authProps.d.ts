@@ -27,4 +27,4 @@ export interface AuthContextProps {
   authLogout: () => void
 }
 
-export type AuthTypeProps = 'signup' | 'signin'
+export type AuthTypeProps = 'signup' | 'signin' | 'forgot'

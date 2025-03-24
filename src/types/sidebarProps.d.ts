@@ -1,20 +1,20 @@
 export interface SidebarNavProps {
   title?: string
-  items: SidebarNavCategory[]
+  items: (SidebarNavItem | SidebarNavCategory)[]
 }
 
 export interface SidebarNavCategory {
   icon: Icon
   url: string
-  isActive: boolean
   title: string
+  isActive?: boolean
   items: SidebarNavItem[]
 }
 
 export interface SidebarNavItem {
   icon?: Icon
-  title: string
   url: string
+  title: string
 }
 
 export interface SidebarUserProps {

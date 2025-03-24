@@ -1,47 +1,48 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
+import { SidebarNavItem, SidebarNavProps } from '@/types'
 import { sidebarNavData } from '@/utils'
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-export const SidebarBreadcrumb = () => {
-  const location = useLocation()
+const findBreadcrumbs = (path: string, sections: SidebarNavProps[]): SidebarNavItem[] => {
+  for (const section of sections) {
+    for (const item of section.items) {
+      if (item.url === path) {
+        return [{ title: item.title, url: item.url, icon: item.icon }]
+      }
 
-  const findBreadcrumbs = (path: string) => {
-    for (const section of sidebarNavData) {
-      for (const items of section.items) {
-        if (items.url === path) {
-          return [
-            { title: section.title, url: '' },
-            { title: items.title, url: items.url }]
-        }
-        if (items.items) {
-          const subNav = items.items.find(sub => sub.url === path)
-          if (subNav) {
-            return [
-              { title: items.title, url: items.url },
-              { title: subNav.title, url: subNav.url }
-            ]
-          }
+      if ('items' in item && item.items.length > 0) {
+        const subNav = findBreadcrumbs(path, [{ title: '', items: item.items }])
+        if (subNav.length) {
+          return [{ title: item.title, url: item.url, icon: item.icon }, ...subNav]
         }
       }
     }
-    return []
   }
 
-  const breadcrumbs = findBreadcrumbs(location.pathname)
+  return []
+}
+
+export const SidebarBreadcrumb = () => {
+  const location = useLocation()
+  const breadcrumbs = findBreadcrumbs(location.pathname, sidebarNavData) || []
 
   return (
     <Breadcrumb>
       <BreadcrumbList>
         {breadcrumbs.map((breadcrumb, index) => (
-          <React.Fragment key={breadcrumb.url}>
+          <React.Fragment key={index}>
             {index > 0 && <BreadcrumbSeparator />}
             <BreadcrumbItem>
               {index === breadcrumbs.length - 1 ? (
-                <BreadcrumbPage>{breadcrumb.title}</BreadcrumbPage>
+                <BreadcrumbPage className='flex gap-2 items-center'>
+                  {breadcrumb.icon && <breadcrumb.icon />} {breadcrumb.title}
+                </BreadcrumbPage>
               ) : (
                 <BreadcrumbLink asChild>
-                  <Link to={breadcrumb.url}>{breadcrumb.title}</Link>
+                  <Link to={breadcrumb.url} className='flex gap-2 items-center'>
+                    {breadcrumb.icon && <breadcrumb.icon />} {breadcrumb.title}
+                  </Link>
                 </BreadcrumbLink>
               )}
             </BreadcrumbItem>
