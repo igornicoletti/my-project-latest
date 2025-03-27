@@ -1,50 +1,51 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
-import { SidebarNavItem, SidebarNavProps } from '@/types'
-import { sidebarNavData } from '@/utils'
-import React from 'react'
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb'
+import { BaseSidebarNavItem, SidebarNavProps } from '@/types'
+import { createUrlMap } from '@/utils'
+import React, { useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-const findBreadcrumbs = (path: string, sections: SidebarNavProps[]): SidebarNavItem[] => {
-  for (const section of sections) {
-    for (const item of section.items) {
-      if (item.url === path) {
-        return [{ title: item.title, url: item.url, icon: item.icon }]
-      }
-
-      if ('items' in item && item.items.length > 0) {
-        const subNav = findBreadcrumbs(path, [{ title: '', items: item.items }])
-        if (subNav.length) {
-          return [{ title: item.title, url: item.url, icon: item.icon }, ...subNav]
-        }
-      }
-    }
-  }
-
-  return []
+interface SidebarBreadcrumbProps {
+  sidebarNavData: SidebarNavProps[]
 }
 
-export const SidebarBreadcrumb = () => {
+export const SidebarBreadcrumb = ({ sidebarNavData }: SidebarBreadcrumbProps) => {
   const location = useLocation()
-  const breadcrumbs = findBreadcrumbs(location.pathname, sidebarNavData) || []
+  const urlMap = useMemo(() => createUrlMap(sidebarNavData), [sidebarNavData])
+
+  const breadcrumbs = useMemo(() => {
+    let currentPath = location.pathname
+    const result: BaseSidebarNavItem[] = []
+
+    while (currentPath && currentPath !== '/') {
+      const item = urlMap[currentPath]
+      if (!item) break
+
+      result.unshift(item)
+      const lastSlashIndex = currentPath.lastIndexOf('/')
+      currentPath = lastSlashIndex > 0 ? currentPath.substring(0, lastSlashIndex) : '/'
+    }
+
+    return result
+  }, [location.pathname, urlMap])
 
   return (
     <Breadcrumb>
       <BreadcrumbList>
         {breadcrumbs.map((breadcrumb, index) => (
-          <React.Fragment key={index}>
+          <React.Fragment key={breadcrumb.url || breadcrumb.title}>
             {index > 0 && <BreadcrumbSeparator />}
             <BreadcrumbItem>
-              {index === breadcrumbs.length - 1 ? (
-                <BreadcrumbPage className='flex gap-2 items-center'>
-                  {breadcrumb.icon && <breadcrumb.icon />} {breadcrumb.title}
-                </BreadcrumbPage>
-              ) : (
-                <BreadcrumbLink asChild>
-                  <Link to={breadcrumb.url} className='flex gap-2 items-center'>
-                    {breadcrumb.icon && <breadcrumb.icon />} {breadcrumb.title}
-                  </Link>
-                </BreadcrumbLink>
-              )}
+              <BreadcrumbLink asChild>
+                <Link to={breadcrumb.url} className="flex gap-2 items-center">
+                  {breadcrumb.icon && React.createElement(breadcrumb.icon)} {breadcrumb.title}
+                </Link>
+              </BreadcrumbLink>
             </BreadcrumbItem>
           </React.Fragment>
         ))}

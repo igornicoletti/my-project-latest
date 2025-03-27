@@ -1,9 +1,8 @@
-import { ThemeContextProps, ThemeProviderProps, ThemeTypeProps } from '@/types'
-import { createContext, useEffect, useState } from 'react'
+import { ThemeProviderProps, ThemeTypeProps } from '@/types'
+import { useEffect, useState } from 'react'
+import { ThemeProviderContext } from './ThemeContext'
 
-const ThemeProviderContext = createContext<ThemeContextProps | null>(null)
-
-const ThemeProvider = ({ children, defaultTheme = 'system', storageKey = 'vite-ui-theme', ...props }: ThemeProviderProps) => {
+export const ThemeProvider = ({ children, defaultTheme = 'system', storageKey = 'vite-ui-theme', ...props }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<ThemeTypeProps>(
     () => (localStorage.getItem(storageKey) as ThemeTypeProps) || defaultTheme
   )
@@ -36,5 +35,3 @@ const ThemeProvider = ({ children, defaultTheme = 'system', storageKey = 'vite-u
     </ThemeProviderContext.Provider>
   )
 }
-
-export { ThemeProvider, ThemeProviderContext }

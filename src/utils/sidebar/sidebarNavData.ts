@@ -1,39 +1,36 @@
 import { SidebarNavProps } from '@/types'
-import { ChatCircle, Folder, MagnifyingGlass, Question, ShoppingCart, SquaresFour } from '@phosphor-icons/react'
+import { ChatCircle, Folder, Lifebuoy, ShoppingCart, SquaresFour } from '@phosphor-icons/react'
 
 export const sidebarNavData: SidebarNavProps[] = [
-  {
-    title: '',
-    items: [
-      {
-        icon: MagnifyingGlass,
-        url: '',
-        isActive: false,
-        title: 'Search',
-        items: []
-      },
-    ]
-  },
   {
     title: 'Analytics',
     items: [
       {
-        icon: SquaresFour,
+        title: 'Dashboard',
         url: '/dashboard',
         isActive: false,
-        title: 'Dashboard',
+        icon: SquaresFour,
+        items: []
+      },
+      {
+        title: 'Order',
+        url: '/order',
+        isActive: false,
+        icon: ShoppingCart,
         items: [
           {
-            icon: ShoppingCart,
-            url: '/dashboard/order',
-            title: 'Order',
-          },
-          {
-            icon: Folder,
-            url: '/dashboard/projects',
             title: 'Projects',
+            url: '/order/projects',
+            icon: Folder,
           },
         ]
+      },
+      {
+        title: 'Projects',
+        url: '/projects',
+        icon: Folder,
+        isActive: false,
+        items: []
       },
     ]
   },
@@ -41,17 +38,17 @@ export const sidebarNavData: SidebarNavProps[] = [
     title: '',
     items: [
       {
-        icon: Question,
-        url: '/support',
-        isActive: false,
         title: 'Support',
+        url: '/support',
+        icon: Lifebuoy,
+        isActive: false,
         items: []
       },
       {
-        icon: ChatCircle,
-        url: '/feedback',
-        isActive: false,
         title: 'Feedback',
+        url: '/feedback',
+        icon: ChatCircle,
+        isActive: false,
         items: []
       },
     ]

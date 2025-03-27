@@ -14,3 +14,7 @@ export const signInSchema = z.object({
 export const forgotPasswordSchema = z.object({
   email: z.string().email('Enter a valid email address.'),
 })
+
+export type SignUpData = z.infer<typeof signUpSchema>
+export type SignInData = z.infer<typeof signInSchema>
+export type ForgotPasswordData = z.infer<typeof forgotPasswordSchema>

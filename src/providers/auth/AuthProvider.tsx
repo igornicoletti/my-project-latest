@@ -1,10 +1,8 @@
-import { AuthContextProps } from '@/types'
 import { deleteCookie, getCookie, setCookie } from '@/utils'
-import { createContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { AuthProviderContext } from './AuthContext'
 
-const AuthProviderContext = createContext<AuthContextProps | undefined>(undefined)
-
-const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
 
   useEffect(() => {
@@ -32,5 +30,3 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     </AuthProviderContext.Provider>
   )
 }
-
-export { AuthProvider, AuthProviderContext }

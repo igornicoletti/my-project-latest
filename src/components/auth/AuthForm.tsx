@@ -1,20 +1,16 @@
-import { useForm } from 'react-hook-form'
-import { Link, useLocation } from 'react-router-dom'
-import { toast } from 'sonner'
-import { z } from 'zod'
-
 import { AuthPassword } from '@/components'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { signinService, signupService } from '@/services'
 import { AuthProps } from '@/types'
-import { signInSchema, signUpSchema } from '@/utils'
+import { SignInData, signInSchema, SignUpData, signUpSchema } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { GithubLogo, GoogleLogo } from '@phosphor-icons/react'
-
-type SignUpData = z.infer<typeof signUpSchema>
-type SignInData = z.infer<typeof signInSchema>
+import { useForm } from 'react-hook-form'
+import { Link, useLocation } from 'react-router-dom'
+import { toast } from 'sonner'
+import { z } from 'zod'
 
 export const AuthForm = ({ config, fields }: AuthProps) => {
   const location = useLocation()

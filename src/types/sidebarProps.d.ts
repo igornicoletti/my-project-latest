@@ -1,20 +1,21 @@
-export interface SidebarNavProps {
-  title?: string
-  items: (SidebarNavItem | SidebarNavCategory)[]
-}
+import { IconProps } from '@phosphor-icons/react'
 
-export interface SidebarNavCategory {
-  icon: Icon
-  url: string
-  title: string
-  isActive?: boolean
-  items: SidebarNavItem[]
-}
+export type Icon = React.ComponentType<IconProps>
 
-export interface SidebarNavItem {
+export interface BaseSidebarNavItem {
   icon?: Icon
   url: string
   title: string
+}
+
+export interface SidebarNavCategory extends BaseSidebarNavItem {
+  isActive?: boolean
+  items: BaseSidebarNavItem[]
+}
+
+export interface SidebarNavProps {
+  title?: string
+  items: (BaseSidebarNavItem | SidebarNavCategory)[]
 }
 
 export interface SidebarUserProps {

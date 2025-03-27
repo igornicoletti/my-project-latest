@@ -11,17 +11,17 @@ export const sidebarUserData: SidebarUserProps = {
     {
       icon: Gear,
       title: 'Account Settings',
-      url: '/settings',
+      url: '/account',
     },
     {
       icon: CreditCard,
       title: 'Subscription & Billing',
-      url: '/settings',
+      url: '/subscription',
     },
     {
       icon: Question,
-      title: 'Help & Suport',
-      url: '/settings',
+      title: 'Help & Support',
+      url: '/help',
     },
     {
       icon: SignOut,
