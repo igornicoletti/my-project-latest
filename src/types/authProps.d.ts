@@ -1,30 +1,31 @@
-export interface AuthConfigProps {
+import { schemaPasswordData, schemaSignInData, schemaSignUpData } from '@/config'
+
+export interface AuthProps {
   title: string
   description: string
-  buttonText: string
-  question: string
-  linkText: string
-  linkTo: string
-  socialButtons: boolean
-  forgotPassword: boolean
+  question?: string
+  url?: string
+  link?: string
 }
 
-export interface AuthFieldProps {
+export interface FormProps {
   id: string
   label: string
   type: string
   required: boolean
 }
 
-export interface AuthProps {
-  config: AuthConfigProps
-  fields: AuthFieldProps[]
+export interface AuthFormSchemaProps {
+  '/signin': {
+    authData: AuthProps
+    formData: FormProps[]
+    schemaData: z.infer<typeof schemaSignInData>
+  }
+  '/signup': {
+    authData: AuthProps
+    formData: FormProps[]
+    schemaData: z.infer<typeof schemaSignUpData>
+  }
 }
 
-export interface AuthContextProps {
-  isAuthenticated: boolean
-  authLogin: (token: string) => void
-  authLogout: () => void
-}
-
-export type AuthTypeProps = 'signup' | 'signin' | 'forgot'
+export type SchemaProps = | typeof schemaSignInData | typeof schemaSignUpData | typeof schemaPasswordData

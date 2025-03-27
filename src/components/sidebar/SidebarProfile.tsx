@@ -1,20 +1,12 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar'
 import { SidebarUserProps } from '@/types'
 import { CaretUpDown } from '@phosphor-icons/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const SidebarUser = ({ avatar, email, fallback, items, title }: SidebarUserProps) => {
+export const SidebarProfile = ({ avatar, email, fallback, items, title }: SidebarUserProps) => {
   const { isMobile } = useSidebar()
 
   return (

@@ -18,7 +18,7 @@ export const SidebarCommand = () => {
 
   return (
     <>
-      <Button variant="secondary" onClick={() => setOpen(true)} className="justify-start w-40 lg:w-56">
+      <Button variant="secondary" onClick={() => setOpen(true)} className="hidden sm:flex justify-start w-40 lg:w-56">
         <MagnifyingGlass weight="light" /> Search...
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>

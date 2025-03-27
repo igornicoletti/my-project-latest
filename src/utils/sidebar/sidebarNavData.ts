@@ -1,36 +1,29 @@
 import { SidebarNavProps } from '@/types'
-import { ChatCircle, Folder, Lifebuoy, ShoppingCart, SquaresFour } from '@phosphor-icons/react'
+import { AppWindow, ChatCircle, Folder, Lifebuoy, ShoppingCart } from '@phosphor-icons/react'
 
 export const sidebarNavData: SidebarNavProps[] = [
   {
-    title: 'Analytics',
+    title: 'App',
     items: [
       {
         title: 'Dashboard',
-        url: '/dashboard',
+        url: '/app/dashboard',
         isActive: false,
-        icon: SquaresFour,
+        icon: AppWindow,
         items: []
       },
       {
         title: 'Order',
-        url: '/order',
+        url: '/app/order',
         isActive: false,
         icon: ShoppingCart,
         items: [
           {
             title: 'Projects',
-            url: '/order/projects',
+            url: '/app/order/projects',
             icon: Folder,
           },
         ]
-      },
-      {
-        title: 'Projects',
-        url: '/projects',
-        icon: Folder,
-        isActive: false,
-        items: []
       },
     ]
   },
@@ -39,14 +32,14 @@ export const sidebarNavData: SidebarNavProps[] = [
     items: [
       {
         title: 'Support',
-        url: '/support',
+        url: '/app/support',
         icon: Lifebuoy,
         isActive: false,
         items: []
       },
       {
         title: 'Feedback',
-        url: '/feedback',
+        url: '/app/feedback',
         icon: ChatCircle,
         isActive: false,
         items: []

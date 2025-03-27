@@ -1,4 +1,4 @@
-import { SidebarBreadcrumb, SidebarCommand, SidebarNav, SidebarUser, ThemeToggle } from '@/components'
+import { SidebarBreadcrumb, SidebarCommand, SidebarNav, SidebarProfile, ThemeToggle } from '@/components'
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { sidebarNavData, sidebarUserData } from '@/utils'
@@ -15,7 +15,7 @@ export const SidebarPage = () => {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild className='data-[slot=sidebar-menu-button]:!p-0'>
-                <Link to=''>
+                <Link to='/'>
                   <div className="flex aspect-square items-center justify-center">
                     <Binary className='size-8 shrink-0' weight='fill' />
                   </div>
@@ -46,11 +46,11 @@ export const SidebarPage = () => {
           ))}
         </SidebarContent>
         <SidebarFooter>
-          <SidebarUser {...sidebarUserData} />
+          <SidebarProfile {...sidebarUserData} />
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
-        <header className='flex h-14 shrink-0 items-end justify-between gap-2 p-2'>
+        <header className='flex h-14 shrink-0 items-center justify-between gap-2 p-2'>
           <div className='flex items-center gap-2'>
             <SidebarTrigger />
             <LineVertical weight='light' />

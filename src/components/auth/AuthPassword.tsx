@@ -1,60 +1,77 @@
 import { Button } from '@/components/ui/button'
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { passwordService } from '@/services'
-import { ForgotPasswordData, forgotPasswordSchema } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
 import { z } from 'zod'
 
-export const AuthPassword = () => {
-  const form = useForm<z.infer<typeof forgotPasswordSchema>>({
-    resolver: zodResolver(forgotPasswordSchema),
-    defaultValues: { email: '' }
+interface AuthProps {
+  title: string
+  description: string
+  question?: string
+  url?: string
+  link?: string
+}
+
+interface FormProps {
+  id: string
+  label: string
+  type: string
+  required: boolean
+}
+
+type Props = {
+  authData: AuthProps
+  formData: FormProps[]
+  schemaData: z.ZodObject<{ email: z.ZodString }, "strip", z.ZodTypeAny, { email: string }, { email: string }>
+}
+
+export const AuthPassword = ({ authData, formData, schemaData }: Props) => {
+
+  const form = useForm<z.infer<typeof schemaData>>({
+    resolver: zodResolver(schemaData),
+    defaultValues: Object.fromEntries(
+      Object.keys(schemaData.shape).map((key) => [key, ''])
+    ) as z.infer<typeof schemaData>
   })
 
-  const onSubmit = async (data: ForgotPasswordData) => {
-    try {
-      const response = await passwordService(data.email)
-      if (response?.error) throw new Error(response.error)
-
-      toast.success(`Instruções enviadas para ${data.email}`)
-      form.reset()
-    } catch (error) {
-      const errorMessage = error instanceof Error
-        ? error.message.includes('not found')
-          ? 'E-mail não encontrado. Verifique e tente novamente.'
-          : error.message
-        : 'Ocorreu um erro inesperado.'
-
-      toast.error(errorMessage)
-    }
+  const onSubmit = (values: z.infer<typeof schemaData>) => {
+    console.log(values)
   }
 
   return (
     <Dialog>
-      <DialogTrigger className='text-sm hover:underline hover:underline-offset-4'>Forgot your password?</DialogTrigger>
+      <DialogTrigger className='text-sm hover:underline hover:underline-offset-4'>
+        Forgot your password?
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Forgot your password?</DialogTitle>
-          <DialogDescription>No problem! Enter the email address you used to register and follow the instructions you’ll receive by email.</DialogDescription>
+          <DialogTitle>{authData.title}</DialogTitle>
+          <DialogDescription>{authData.description}</DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form className='grid gap-2' onSubmit={form.handleSubmit(onSubmit)}>
-            <FormField control={form.control} name='email' render={({ field: formField }) => (
-              <FormItem>
-                <FormLabel>Email address</FormLabel>
-                <FormControl>
-                  <Input value={formField.value} onChange={formField.onChange} type='email' required />
-                </FormControl>
-                <FormMessage className='-mt-1 ml-auto text-sm' />
-              </FormItem>
-            )} />
-            <DialogFooter>
-              <Button className='w-full' type='submit'>Submit</Button>
-            </DialogFooter>
+          <form onSubmit={form.handleSubmit(onSubmit)} className='grid gap-4'>
+            {formData.map((data) => (
+              <FormField
+                key={data.id}
+                control={form.control}
+                name={data.id as keyof z.infer<typeof schemaData>}
+                render={({ field: formField }) => (
+                  <FormItem>
+                    <FormLabel>{data.label}</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...formField}
+                        type={data.type}
+                        required={data.required} />
+                    </FormControl>
+                    <FormMessage className='-mt-1 ml-auto text-sm' />
+                  </FormItem>
+                )}
+              />
+            ))}
+            <Button type='submit'>Submit</Button>
           </form>
         </Form>
       </DialogContent>

@@ -1,3 +1,4 @@
-export * from './404/page'
-export * from './auth/page'
-export * from './sidebar/page'
+export * from './auth/AuthPage'
+export * from './errors/ErrorPage'
+export * from './errors/NotFoundPage'
+export * from './layout/SidebarPage'

@@ -1,15 +1,11 @@
-import { AuthPage, NotFoundPage, SidebarPage } from '@/app'
+import { AuthPage, ErrorPage, NotFoundPage, SidebarPage } from '@/app'
 import { PublicRoute } from '@/components'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 
 export const router = createBrowserRouter([
   {
-    path: '*',
-    element: <NotFoundPage />,
-  },
-  {
     path: '/',
-    element: <Navigate to='/signin' replace />,
+    element: <Navigate to="/signin" replace />,
   },
   {
     path: '/signin',
@@ -28,10 +24,9 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/',
-    element: (
-      <SidebarPage />
-    ),
+    path: '/app',
+    element: <SidebarPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: 'dashboard',
@@ -44,12 +39,11 @@ export const router = createBrowserRouter([
           {
             path: 'projects',
             element: <h1>Projects</h1>,
+            loader: async () => {
+              throw new Response('Failed to fetch projects', { status: 500 })
+            },
           },
         ],
-      },
-      {
-        path: 'projects',
-        element: <h1>Projects</h1>,
       },
       {
         path: 'support',
@@ -60,5 +54,9 @@ export const router = createBrowserRouter([
         element: <h1>Feedback</h1>,
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFoundPage />,
   },
 ])
