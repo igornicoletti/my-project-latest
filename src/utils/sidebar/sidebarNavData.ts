@@ -1,5 +1,5 @@
 import { SidebarNavProps } from '@/types'
-import { AppWindow, Folder, Headset, PaperPlaneTilt, ShoppingCartSimple } from '@phosphor-icons/react'
+import { AppWindow, ChatText, Folder, Question, ShoppingCartSimple } from '@phosphor-icons/react'
 
 export const sidebarNavData: SidebarNavProps[] = [
   {
@@ -33,14 +33,14 @@ export const sidebarNavData: SidebarNavProps[] = [
       {
         title: 'Support',
         url: '/app/support',
-        icon: Headset,
+        icon: Question,
         isActive: false,
         items: []
       },
       {
         title: 'Feedback',
         url: '/app/feedback',
-        icon: PaperPlaneTilt,
+        icon: ChatText,
         isActive: false,
         items: []
       },

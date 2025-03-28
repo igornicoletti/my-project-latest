@@ -1,4 +1,9 @@
-import { AuthContextProps } from '@/types'
 import { createContext } from 'react'
 
-export const AuthProviderContext = createContext<AuthContextProps | undefined>(undefined)
+interface Props {
+  isAuthenticated: boolean
+  authLogin: (token: string) => void
+  authLogout: () => void
+}
+
+export const AuthProviderContext = createContext<Props | undefined>(undefined)

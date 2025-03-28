@@ -58,7 +58,7 @@ export const SidebarPage = () => {
           </div>
           <div className='flex items-center gap-2'>
             <SidebarCommand />
-            <ThemeToggle />
+            <ThemeToggle asMinimal />
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-2">

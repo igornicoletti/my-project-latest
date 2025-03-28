@@ -3,28 +3,38 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { useTheme } from '@/hooks'
 import { Desktop, Moon, Sun } from '@phosphor-icons/react'
 
-export const ThemeToggle = () => {
-  const { setTheme } = useTheme()
+export const ThemeToggle = ({ asMinimal }: { asMinimal?: boolean }) => {
+  const { theme, setTheme } = useTheme()
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant='ghost' size='icon'>
-          <Sun weight='light' className='shrink-0 absolute rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-          <Moon weight='light' className='shrink-0 absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
+    <>
+      {asMinimal ? (
+        <Button variant="ghost" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+          <Sun weight="light" className="shrink-0 absolute rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon weight="light" className="shrink-0 absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
         </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align='end'>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
-          <Moon weight='light' /> Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('light')}>
-          <Sun weight='light' /> Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
-          <Desktop weight='light' /> System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      ) : (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <Sun weight="light" className="shrink-0 absolute rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon weight="light" className="shrink-0 absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </Button >
+          </DropdownMenuTrigger >
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => setTheme('dark')}>
+              <Moon weight="light" /> Dark
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTheme('light')}>
+              <Sun weight="light" /> Light
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTheme('system')}>
+              <Desktop weight="light" /> System
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu >
+      )}
+    </>
+
   )
 }
