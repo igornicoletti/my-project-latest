@@ -29,3 +29,9 @@ export interface AuthFormSchemaProps {
 }
 
 export type SchemaProps = | typeof schemaSignInData | typeof schemaSignUpData | typeof schemaPasswordData
+
+export interface AuthContextProps {
+  isAuthenticated: boolean
+  authLogin: (token: string) => void
+  authLogout: () => void
+}

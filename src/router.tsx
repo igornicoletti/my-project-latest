@@ -37,10 +37,10 @@ export const router = createBrowserRouter([
         element: <h1>Order</h1>,
         children: [
           {
-            path: 'projects',
+            path: 'products',
             element: <h1>Projects</h1>,
             loader: async () => {
-              throw new Response('Failed to fetch projects', { status: 500 })
+              throw new Response('Failed to fetch products', { status: 500 })
             },
           },
         ],

@@ -1,5 +1,4 @@
-export * from './auth/AuthForm'
-export * from './auth/AuthPassword'
+export * from './custom/AuthForm'
 export * from './custom/PrivateRoute'
 export * from './custom/PublicRoute'
 export * from './custom/ThemeToggle'

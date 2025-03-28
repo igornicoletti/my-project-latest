@@ -15,7 +15,7 @@ export const SidebarPage = () => {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild className='data-[slot=sidebar-menu-button]:!p-0'>
-                <Link to='/'>
+                <Link to='/app/dashboard'>
                   <div className="flex aspect-square items-center justify-center">
                     <Binary className='size-8 shrink-0' weight='fill' />
                   </div>
