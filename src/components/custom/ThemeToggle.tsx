@@ -9,27 +9,27 @@ export const ThemeToggle = ({ asMinimal }: { asMinimal?: boolean }) => {
   return (
     <>
       {asMinimal ? (
-        <Button variant="ghost" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-          <Sun weight="light" className="shrink-0 absolute rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon weight="light" className="shrink-0 absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <Button className='relative' variant="ghost" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+          <Moon weight="duotone" className="shrink-0 absolute rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Sun weight="duotone" className="shrink-0 absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
         </Button>
       ) : (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon">
-              <Sun weight="light" className="shrink-0 absolute rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon weight="light" className="shrink-0 absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <Button className='relative' variant="ghost" size="icon">
+              <Sun weight="duotone" className="shrink-0 absolute rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon weight="duotone" className="shrink-0 absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
             </Button >
           </DropdownMenuTrigger >
           <DropdownMenuContent align="end">
             <DropdownMenuItem onClick={() => setTheme('dark')}>
-              <Moon weight="light" /> Dark
+              <Moon weight="duotone" /> Dark
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => setTheme('light')}>
-              <Sun weight="light" /> Light
+              <Sun weight="duotone" /> duotone
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => setTheme('system')}>
-              <Desktop weight="light" /> System
+              <Desktop weight="duotone" /> System
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu >

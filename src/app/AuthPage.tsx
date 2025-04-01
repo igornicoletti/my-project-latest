@@ -1,6 +1,6 @@
-import { AuthForm } from '@/components'
+import { FormAuth } from '@/components'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { authPasswordData, authSignInData, authSignUpData, formPasswordData, formSignInData, formSignUpData, schemaPasswordData, schemaSignInData, schemaSignUpData } from '@/config'
+import { authPasswordData, authSignInData, authSignUpData, formPasswordData, formSignInData, formSignUpData, schemaPasswordData, schemaSignInData, schemaSignUpData } from '@/data'
 import { AuthFormSchemaProps } from '@/types'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -35,7 +35,7 @@ export const AuthPage = () => {
             <h1 className="truncate text-xl font-medium">{authData.title}</h1>
             <p className="text-balance text-muted-foreground">{authData.description}</p>
           </div>
-          <AuthForm
+          <FormAuth
             formData={formData}
             schemaData={schemaData} />
           <div className="grid gap-2">
@@ -49,7 +49,7 @@ export const AuthPage = () => {
                     <DialogTitle>{authPasswordData.title}</DialogTitle>
                     <DialogDescription>{authPasswordData.description}</DialogDescription>
                   </DialogHeader>
-                  <AuthForm
+                  <FormAuth
                     hideSocial={true}
                     formData={formPasswordData}
                     schemaData={schemaPasswordData}

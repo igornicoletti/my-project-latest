@@ -1,6 +1,7 @@
-import { AuthPage, ErrorPage, NotFoundPage, SidebarPage } from '@/app'
+import { AuthPage, ErrorPage, NotFoundPage } from '@/app'
 import { PublicRoute } from '@/components'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
+import { AppPage } from './App'
 
 export const router = createBrowserRouter([
   {
@@ -24,8 +25,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/app',
-    element: <SidebarPage />,
+    element: <AppPage />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -39,9 +39,9 @@ export const router = createBrowserRouter([
           {
             path: 'products',
             element: <h1>Projects</h1>,
-            loader: async () => {
+            /* loader: async () => {
               throw new Response('Failed to fetch products', { status: 500 })
-            },
+            }, */
           },
         ],
       },

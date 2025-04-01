@@ -26,7 +26,7 @@ export const SidebarProfile = ({ avatar, email, fallback, items, title }: Sideba
                 <span className="truncate font-semibold">{title}</span>
                 <span className="truncate text-xs">{email}</span>
               </div>
-              <CaretUpDown weight="light" />
+              <CaretUpDown weight="duotone" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -52,7 +52,7 @@ export const SidebarProfile = ({ avatar, email, fallback, items, title }: Sideba
                   {index === items.length - 1 && <DropdownMenuSeparator />}
                   <DropdownMenuItem asChild>
                     <Link to={item.url}>
-                      <item.icon weight="light" /> {item.title}
+                      <item.icon weight="duotone" /> {item.title}
                     </Link>
                   </DropdownMenuItem>
                 </React.Fragment>

@@ -7,20 +7,20 @@ export const sidebarNavData: SidebarNavProps[] = [
     items: [
       {
         title: 'Dashboard',
-        url: '/app/dashboard',
+        url: '/dashboard',
         isActive: false,
         icon: AppWindow,
         items: []
       },
       {
         title: 'Order',
-        url: '/app/order',
+        url: '/order',
         isActive: false,
         icon: ShoppingCartSimple,
         items: [
           {
             title: 'Products',
-            url: '/app/order/products',
+            url: '/order/products',
             icon: Folder,
           },
         ]
@@ -32,14 +32,14 @@ export const sidebarNavData: SidebarNavProps[] = [
     items: [
       {
         title: 'Support',
-        url: '/app/support',
+        url: '/support',
         icon: Question,
         isActive: false,
         items: []
       },
       {
         title: 'Feedback',
-        url: '/app/feedback',
+        url: '/feedback',
         icon: ChatText,
         isActive: false,
         items: []

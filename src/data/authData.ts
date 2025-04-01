@@ -1,7 +1,8 @@
+import { AuthProps, FormProps } from '@/types'
 import { z } from 'zod'
 
 // Auth Data
-export const authSignInData = {
+export const authSignInData: AuthProps = {
   title: 'Sign in to your account',
   description: 'Welcome back! Please sign in to continue',
   question: "Don't have an account?",
@@ -9,7 +10,7 @@ export const authSignInData = {
   link: 'Sign up',
 }
 
-export const authSignUpData = {
+export const authSignUpData: AuthProps = {
   title: 'Create your account',
   description: 'Welcome! Fill in your details to get started',
   question: 'Already have an account?',
@@ -17,24 +18,24 @@ export const authSignUpData = {
   link: 'Sign in',
 }
 
-export const authPasswordData = {
+export const authPasswordData: AuthProps = {
   title: 'Forgot your password?',
   description: 'No problem! Enter the email address you used to register and follow the instructions you’ll receive by email.',
 }
 
 // Form Data
-export const formSignInData = [
+export const formSignInData: FormProps[] = [
   { id: 'email', label: 'Email', type: 'email', required: true },
   { id: 'password', label: 'Password', type: 'password', required: true },
 ]
 
-export const formSignUpData = [
+export const formSignUpData: FormProps[] = [
   { id: 'username', label: 'Name', type: 'text', required: true },
   { id: 'email', label: 'Email', type: 'email', required: true },
   { id: 'password', label: 'Password', type: 'password', required: true },
 ]
 
-export const formPasswordData = [
+export const formPasswordData: FormProps[] = [
   { id: 'email', label: 'Email', type: 'email', required: true },
 ]
 

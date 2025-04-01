@@ -26,14 +26,14 @@ export const SidebarNav = ({ title, items }: SidebarNavProps) => {
             <SidebarMenuItem>
               <SidebarMenuButton asChild tooltip={item.title} className={isItemActive(item.url) ? 'text-primary' : 'text-muted-foreground'}>
                 <Link to={item.url} className="flex items-center space-x-2">
-                  {item.icon && <item.icon weight='light' />} {item.title}
+                  {item.icon && <item.icon weight='duotone' />} {item.title}
                 </Link>
               </SidebarMenuButton>
               {isSidebarCategory(item) && item.items.length > 0 && (
                 <>
                   <CollapsibleTrigger asChild>
                     <SidebarMenuAction className='data-[state=open]:rotate-90'>
-                      <CaretRight weight='light' />
+                      <CaretRight weight='regular' />
                     </SidebarMenuAction>
                   </CollapsibleTrigger>
                   <CollapsibleContent>

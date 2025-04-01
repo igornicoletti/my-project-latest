@@ -14,14 +14,13 @@ interface Props {
   hideSocial?: boolean
 }
 
-export const AuthForm = ({ formData, schemaData, hideSocial }: Props) => {
+export const FormAuth = ({ formData, schemaData, hideSocial }: Props) => {
   type FormValues = z.infer<typeof schemaData>
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schemaData),
     defaultValues: Object.fromEntries(
-      Object.keys(schemaData.shape).map((key) => [String(key), ''])
-    ) as FormValues,
+      Object.keys(schemaData.shape).map((key) => [String(key), ''])) as FormValues
   })
 
   const onSubmit = (values: FormValues) => {
@@ -41,7 +40,10 @@ export const AuthForm = ({ formData, schemaData, hideSocial }: Props) => {
               <FormItem>
                 <FormLabel>{data.label}</FormLabel>
                 <FormControl>
-                  <Input {...formField} type={data.type} required={data.required} />
+                  <Input
+                    {...formField}
+                    type={data.type}
+                    required={data.required} />
                 </FormControl>
                 <FormMessage className="-mt-1 ml-auto" />
               </FormItem>
@@ -56,10 +58,10 @@ export const AuthForm = ({ formData, schemaData, hideSocial }: Props) => {
             </div>
             <div className="grid grid-cols-2 gap-2">
               <Button variant="secondary">
-                <GithubLogo weight="light" /> GitHub
+                <GithubLogo weight="duotone" /> GitHub
               </Button>
               <Button variant="secondary">
-                <GoogleLogo weight="light" /> Google
+                <GoogleLogo weight="duotone" /> Google
               </Button>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { schemaPasswordData, schemaSignInData, schemaSignUpData } from '@/config'
+import { schemaPasswordData, schemaSignInData, schemaSignUpData } from '@/data'
 
 export interface AuthProps {
   title: string

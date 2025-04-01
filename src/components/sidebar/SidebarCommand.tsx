@@ -19,7 +19,7 @@ export const SidebarCommand = () => {
   return (
     <>
       <Button variant="secondary" onClick={() => setOpen(true)} className="hidden sm:flex justify-start w-40 lg:w-56">
-        <MagnifyingGlass weight="light" /> Search...
+        <MagnifyingGlass weight="duotone" /> Search...
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="Search navigation..." />
@@ -32,7 +32,7 @@ export const SidebarCommand = () => {
                 {section.items.map((item) => (
                   <CommandItem key={item.url} onSelect={() => setOpen(false)}>
                     <Link to={item.url} className="flex items-center gap-2 w-full">
-                      {item.icon && <item.icon weight="light" />} {item.title}
+                      {item.icon && <item.icon weight="duotone" />} {item.title}
                     </Link>
                   </CommandItem>
                 ))}
