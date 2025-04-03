@@ -28,20 +28,18 @@ export const AuthPage = () => {
   }
 
   return (
-    <div className="min-h-screen grid place-items-center">
-      <div className="w-full max-w-md text-center text-sm">
-        <div className="grid gap-6 p-6">
-          <div className="grid gap-2">
-            <h1 className="truncate text-xl font-medium">{authData.title}</h1>
-            <p className="text-balance text-muted-foreground">{authData.description}</p>
+    <div className='min-h-screen grid place-items-center'>
+      <div className='w-full max-w-md text-center text-sm'>
+        <div className='grid gap-6 p-6'>
+          <div className='grid gap-2'>
+            <h1 className='truncate text-xl font-medium'>{authData.title}</h1>
+            <p className='text-balance text-muted-foreground'>{authData.description}</p>
           </div>
-          <FormAuth
-            formData={formData}
-            schemaData={schemaData} />
-          <div className="grid gap-2">
+          <FormAuth formData={formData} schemaData={schemaData} />
+          <div className='grid gap-2'>
             {pathname === '/signin' && (
               <Dialog>
-                <DialogTrigger className="text-balance text-muted-foreground hover:text-primary hover:underline underline-offset-4">
+                <DialogTrigger className='text-balance text-muted-foreground hover:text-foreground hover:underline underline-offset-4'>
                   {authPasswordData.title}
                 </DialogTrigger>
                 <DialogContent>
@@ -49,18 +47,14 @@ export const AuthPage = () => {
                     <DialogTitle>{authPasswordData.title}</DialogTitle>
                     <DialogDescription>{authPasswordData.description}</DialogDescription>
                   </DialogHeader>
-                  <FormAuth
-                    hideSocial={true}
-                    formData={formPasswordData}
-                    schemaData={schemaPasswordData}
-                  />
+                  <FormAuth hideSocial={true} formData={formPasswordData} schemaData={schemaPasswordData} />
                 </DialogContent>
               </Dialog>
             )}
             {authData.url && (
-              <div className="text-balance text-muted-foreground">
+              <div className='text-balance text-muted-foreground'>
                 {authData.question}{' '}
-                <Link to={authData.url} className="text-primary hover:underline underline-offset-4">
+                <Link to={authData.url} className='text-balance text-foreground hover:underline underline-offset-4'>
                   {authData.link}
                 </Link>
               </div>

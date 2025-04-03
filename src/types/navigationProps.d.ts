@@ -1,11 +1,36 @@
 import { Icon } from '@phosphor-icons/react'
 
-export interface Navigation {
+/* DropdownNavigation */
+export interface DropdownNavItem {
   title: string
   url: string
   icon: Icon
 }
 
-export type NavigationProps = {
-  navigations: Navigation[]
+export type DropdownNavProps = {
+  navigations: DropdownNavItem[]
+}
+
+/* CollapsibleNavigation */
+interface CollapsibleNavSubitem {
+  title: string
+  icon: Icon
+  url: string
+}
+
+interface CollapsibleNavItem {
+  title: string
+  url: string
+  icon: Icon
+  isActive?: boolean
+  subitems?: CollapsibleNavSubitem[]
+}
+
+export interface CollapsibleNavCategory {
+  label: string
+  items: CollapsibleNavItem[]
+}
+
+export type CollapsibleNavProps = {
+  navigations: CollapsibleNavCategory[]
 }

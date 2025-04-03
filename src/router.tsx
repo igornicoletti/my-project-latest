@@ -6,7 +6,7 @@ import { AppPage } from './App'
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Navigate to="/signin" replace />,
+    element: <Navigate to='/signin' replace />,
   },
   {
     path: '/signin',
@@ -33,12 +33,12 @@ export const router = createBrowserRouter([
         element: <h1>Dashboard</h1>,
       },
       {
-        path: 'order',
-        element: <h1>Order</h1>,
+        path: 'orders',
+        element: <h1>Orders</h1>,
         children: [
           {
             path: 'products',
-            element: <h1>Projects</h1>,
+            element: <h1>Products</h1>,
             /* loader: async () => {
               throw new Response('Failed to fetch products', { status: 500 })
             }, */

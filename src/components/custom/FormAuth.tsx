@@ -30,7 +30,7 @@ export const FormAuth = ({ formData, schemaData, hideSocial }: Props) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className='grid gap-4'>
         {formData.map((data) => (
           <FormField
             key={data.id}
@@ -45,23 +45,23 @@ export const FormAuth = ({ formData, schemaData, hideSocial }: Props) => {
                     type={data.type}
                     required={data.required} />
                 </FormControl>
-                <FormMessage className="-mt-1 ml-auto" />
+                <FormMessage className='-mt-1 ml-auto' />
               </FormItem>
             )}
           />
         ))}
-        <Button type="submit">Continue</Button>
+        <Button type='submit'>Continue</Button>
         {!hideSocial && (
-          <div className="grid gap-4">
-            <div className="relative after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
-              <span className="relative z-10 px-2 text-muted-foreground bg-background">or</span>
+          <div className='grid gap-4'>
+            <div className='relative after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border'>
+              <span className='relative z-10 px-2 text-muted-foreground bg-background'>or</span>
             </div>
-            <div className="grid grid-cols-2 gap-2">
-              <Button variant="secondary">
-                <GithubLogo weight="duotone" /> GitHub
+            <div className='grid grid-cols-2 gap-2'>
+              <Button variant='secondary'>
+                <GithubLogo weight='duotone' /> GitHub
               </Button>
-              <Button variant="secondary">
-                <GoogleLogo weight="duotone" /> Google
+              <Button variant='secondary'>
+                <GoogleLogo weight='duotone' /> Google
               </Button>
             </div>
           </div>

@@ -1,12 +1,12 @@
 import { AvatarUser } from '@/components'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar'
-import { NavigationProps, UserProps } from '@/types'
+import { DropdownNavProps, UserProps } from '@/types'
 import { CaretUpDown } from '@phosphor-icons/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const NavigationUser = ({ user, navigations }: UserProps & NavigationProps) => {
+export const DropdownNavigation = ({ user, navigations }: UserProps & DropdownNavProps) => {
   const { isMobile } = useSidebar()
 
   return (
@@ -14,23 +14,23 @@ export const NavigationUser = ({ user, navigations }: UserProps & NavigationProp
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SidebarMenuButton size="lg">
+            <SidebarMenuButton size='lg'>
               <AvatarUser user={user} />
-              <CaretUpDown weight="duotone" className='ml-auto' />
+              <CaretUpDown weight='duotone' className='ml-auto' />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-[271px]" side={isMobile ? undefined : "right"} align="end" sideOffset={4}>
+          <DropdownMenuContent className='w-[271px]' side={isMobile ? undefined : 'right'} align='end' sideOffset={4}>
             <DropdownMenuLabel>
               <AvatarUser user={user} />
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              {navigations.map((item, index) => (
+              {navigations.map((nav, index) => (
                 <React.Fragment key={index}>
                   {index === navigations.length - 1 && <DropdownMenuSeparator />}
                   <DropdownMenuItem asChild>
-                    <Link to={item.url}>
-                      <item.icon weight="duotone" /> {item.title}
+                    <Link to={nav.url}>
+                      <nav.icon weight='duotone' /> {nav.title}
                     </Link>
                   </DropdownMenuItem>
                 </React.Fragment>

@@ -1,7 +1,7 @@
-import { Navigation } from '@/types'
-import { BellSimple, Gear, SignOut, User } from '@phosphor-icons/react'
+import { CollapsibleNavCategory, DropdownNavItem, } from '@/types'
+import { AppWindow, BellSimple, ChatText, Folder, Gear, Question, ShoppingCartSimple, SignOut, User } from '@phosphor-icons/react'
 
-export const navigationData: Navigation[] = [
+export const dropdownNavData: DropdownNavItem[] = [
   {
     icon: User,
     title: 'Profile',
@@ -21,5 +21,52 @@ export const navigationData: Navigation[] = [
     icon: SignOut,
     title: 'Sign Out',
     url: '/',
+  },
+]
+
+export const collapsibleNavData: CollapsibleNavCategory[] = [
+  {
+    label: "App",
+    items: [
+      {
+        title: "Dashboard",
+        url: "/dashboard",
+        icon: AppWindow,
+        isActive: false,
+        subitems: [],
+      },
+      {
+        title: "Orders",
+        url: "/orders",
+        icon: ShoppingCartSimple,
+        isActive: false,
+        subitems: [
+          {
+            title: "Products",
+            icon: Folder,
+            url: "/orders/products",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "",
+    items: [
+      {
+        title: "Support",
+        url: "/support",
+        icon: Question,
+        isActive: false,
+        subitems: [],
+      },
+      {
+        title: "Feedback",
+        url: "/feedback",
+        icon: ChatText,
+        isActive: false,
+        subitems: [],
+      },
+    ],
   },
 ]
