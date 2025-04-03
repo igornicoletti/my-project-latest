@@ -3,6 +3,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } fr
 import { collapsibleNavData, dropdownNavData, logoData, userData } from '@/data'
 
 export const SidebarLayout = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
+
   return (
     <Sidebar collapsible='icon' {...props}>
       <SidebarHeader>

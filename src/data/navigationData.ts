@@ -44,7 +44,14 @@ export const collapsibleNavData: CollapsibleNavCategory[] = [
           {
             title: "Products",
             icon: Folder,
+            isActive: false,
             url: "/orders/products",
+          },
+          {
+            title: "Projetcs",
+            icon: Folder,
+            isActive: false,
+            url: "/orders/projetcs",
           },
         ],
       },

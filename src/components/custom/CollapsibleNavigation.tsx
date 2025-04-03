@@ -1,20 +1,23 @@
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from '@/components/ui/sidebar'
+import { useActive } from '@/hooks'
 import { CollapsibleNavProps } from '@/types'
 import { CaretRight } from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
 
 export const CollapsibleNavigation = ({ navigations }: CollapsibleNavProps) => {
+  const navigationsActive = useActive(navigations)
+
   return (
     <>
-      {navigations.map((nav, navIndex) => (
+      {navigationsActive.map((nav, navIndex) => (
         <SidebarGroup key={navIndex} className='last:mt-auto'>
           <SidebarGroupLabel>{nav.label}</SidebarGroupLabel>
           <SidebarMenu>
             {nav.items.map((item, itemIndex) => (
               <Collapsible key={itemIndex} asChild defaultOpen={item.isActive}>
                 <SidebarMenuItem>
-                  <SidebarMenuButton asChild tooltip={item.title}>
+                  <SidebarMenuButton asChild tooltip={item.title} isActive={item.isActive}>
                     <Link to={item.url}>
                       <item.icon weight='duotone' />
                       <span>{item.title}</span>
@@ -31,7 +34,7 @@ export const CollapsibleNavigation = ({ navigations }: CollapsibleNavProps) => {
                         <SidebarMenuSub>
                           {item.subitems?.map((subItem, subIndex) => (
                             <SidebarMenuSubItem key={subIndex}>
-                              <SidebarMenuSubButton asChild>
+                              <SidebarMenuSubButton asChild isActive={subItem.isActive}>
                                 <Link to={subItem.url}>
                                   <span>{subItem.title}</span>
                                 </Link>

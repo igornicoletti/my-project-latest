@@ -16,6 +16,7 @@ interface CollapsibleNavSubitem {
   title: string
   icon: Icon
   url: string
+  isActive?: boolean
 }
 
 interface CollapsibleNavItem {
