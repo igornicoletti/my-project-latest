@@ -1,4 +1,4 @@
-import { BreadcrumbPath, SidebarLayout, ThemeToggle } from '@/components'
+import { BreadcrumbPath, CommandNavigation, SidebarLayout, ThemeToggle } from '@/components'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { LineVertical } from '@phosphor-icons/react'
 import { Outlet } from 'react-router-dom'
@@ -16,6 +16,7 @@ export const AppPage = () => {
               <BreadcrumbPath />
             </div>
             <div className='flex items-center gap-2'>
+              <CommandNavigation />
               <ThemeToggle asMinimal />
             </div>
           </div>
