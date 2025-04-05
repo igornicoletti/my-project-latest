@@ -1,4 +1,4 @@
-import { Toaster } from '@/components/ui'
+import { Toaster } from '@/components/ui/sonner'
 import '@/index.css'
 import { AuthProvider, ThemeProvider } from '@/providers'
 import { router } from '@/router'

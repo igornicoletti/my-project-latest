@@ -9,7 +9,7 @@ export const useActive = (navigations: CollapsibleNavCategory[]) => {
     items: nav.items.map((item) => {
       const subitems = item.subitems?.map((subItem) => ({
         ...subItem,
-        isActive: location.pathname === subItem.url,
+        isActive: location.pathname === subItem.url
       })) || []
 
       return {

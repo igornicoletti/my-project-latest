@@ -51,9 +51,9 @@ export const router = createBrowserRouter([
           {
             path: 'projetcs',
             element: <h1>Projects</h1>,
-            /* loader: async () => {
-              throw new Response('Failed to fetch products', { status: 500 });
-            }, */
+            loader: async () => {
+              throw new Response('Failed to fetch products', { status: 500 })
+            },
           },
         ],
       },

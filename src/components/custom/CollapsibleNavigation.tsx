@@ -1,4 +1,5 @@
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from '@/components/ui/sidebar'
 import { useActive } from '@/hooks'
 import { CollapsibleNavProps } from '@/types'
@@ -9,7 +10,7 @@ export const CollapsibleNavigation = ({ navigations }: CollapsibleNavProps) => {
   const navigationsActive = useActive(navigations)
 
   return (
-    <>
+    <ScrollArea className='h-full'>
       {navigationsActive.map((nav, navIndex) => (
         <SidebarGroup key={navIndex} className='last:mt-auto'>
           <SidebarGroupLabel>{nav.label}</SidebarGroupLabel>
@@ -51,6 +52,6 @@ export const CollapsibleNavigation = ({ navigations }: CollapsibleNavProps) => {
           </SidebarMenu>
         </SidebarGroup>
       ))}
-    </>
+    </ScrollArea>
   )
 }

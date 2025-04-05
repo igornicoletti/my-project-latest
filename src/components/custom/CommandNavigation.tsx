@@ -11,11 +11,12 @@ export const CommandNavigation = () => {
 
   return (
     <>
-      <Button className="relative" variant="ghost" size="icon" onClick={() => setOpen(true)} aria-label="Open search command">
-        <MagnifyingGlass weight="duotone" />
+      <Button className='flex justify-start' variant='ghost' size='lg' onClick={() => setOpen(true)} aria-label='Open search command'>
+        <MagnifyingGlass weight='duotone' />
+        <span>Search</span>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Search navigation..." />
+        <CommandInput placeholder='Search navigation...' />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           {collapsibleNavData.map((section: CollapsibleNavCategory, index: number) => (
@@ -26,15 +27,15 @@ export const CommandNavigation = () => {
                   {section.items.map((item: CollapsibleNavItem) => (
                     <React.Fragment key={item.url}>
                       <CommandItem onSelect={() => setOpen(false)}>
-                        <Link to={item.url} className="flex items-center gap-2 w-full">
-                          <item.icon weight="duotone" />
+                        <Link to={item.url} className='flex items-center gap-2 w-full'>
+                          <item.icon weight='duotone' />
                           <span>{item.title}</span>
                         </Link>
                       </CommandItem>
                       {item.subitems && item.subitems.map((subItem: CollapsibleNavSubitem) => (
-                        <CommandItem key={subItem.url} onSelect={() => setOpen(false)} className="ml-4">
-                          <Link to={subItem.url} className="flex items-center gap-2 w-full">
-                            <item.icon weight="duotone" />
+                        <CommandItem key={subItem.url} onSelect={() => setOpen(false)} className='ml-4'>
+                          <Link to={subItem.url} className='flex items-center gap-2 w-full'>
+                            <item.icon weight='duotone' />
                             <span>{subItem.title}</span>
                           </Link>
                         </CommandItem>

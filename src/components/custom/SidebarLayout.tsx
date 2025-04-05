@@ -1,6 +1,6 @@
-import { CarouselLogo, CollapsibleNavigation, DropdownNavigation } from '@/components'
+import { CarouselLogo, CollapsibleNavigation, CommandNavigation, DropdownNavigation } from '@/components'
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@/components/ui/sidebar'
-import { collapsibleNavData, dropdownNavData, logoData, userData } from '@/data'
+import { collapsibleNavData, dropdownNavData, logoData } from '@/data'
 
 export const SidebarLayout = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
 
@@ -13,7 +13,8 @@ export const SidebarLayout = ({ ...props }: React.ComponentProps<typeof Sidebar>
         <CollapsibleNavigation navigations={collapsibleNavData} />
       </SidebarContent>
       <SidebarFooter>
-        <DropdownNavigation user={userData} navigations={dropdownNavData} />
+        <CommandNavigation />
+        <DropdownNavigation navigations={dropdownNavData} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
